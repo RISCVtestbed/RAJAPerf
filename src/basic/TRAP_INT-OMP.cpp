@@ -27,7 +27,7 @@ Real_type trap_int_func(Real_type x,
                         Real_type yp)
 {
    Real_type denom = (x - xp)*(x - xp) + (y - yp)*(y - yp);
-   denom = 1.0/sqrt(denom);
+   denom = 1.0f/sqrtf(denom);
    return denom;
 }
 

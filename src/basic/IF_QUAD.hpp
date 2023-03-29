@@ -10,14 +10,14 @@
 /// IF_QUAD kernel reference implementation:
 ///
 /// for (Index_type i = ibegin; i < iend; ++i ) {
-///   Real_type s = b[i]*b[i] - 4.0*a[i]*c[i];
+///   Real_type s = b[i]*b[i] - 4.0f*a[i]*c[i];
 ///   if ( s >= 0 ) {
-///     s = sqrt(s);
-///     x2[i] = (-b[i]+s)/(2.0*a[i]);
-///     x1[i] = (-b[i]-s)/(2.0*a[i]);
+///     s = sqrtf(s);
+///     x2[i] = (-b[i]+s)/(2.0f*a[i]);
+///     x1[i] = (-b[i]-s)/(2.0f*a[i]);
 ///   } else {
-///     x2[i] = 0.0;
-///     x1[i] = 0.0;
+///     x2[i] = 0.0f;
+///     x1[i] = 0.0f;
 ///   }
 /// }
 ///
@@ -33,14 +33,14 @@
   Real_ptr x2 = m_x2;
 
 #define IF_QUAD_BODY  \
-  Real_type s = b[i]*b[i] - 4.0*a[i]*c[i]; \
+  Real_type s = b[i]*b[i] - 4.0f*a[i]*c[i]; \
   if ( s >= 0 ) { \
-    s = sqrt(s); \
-    x2[i] = (-b[i]+s)/(2.0*a[i]); \
-    x1[i] = (-b[i]-s)/(2.0*a[i]); \
+    s = sqrtf(s); \
+    x2[i] = (-b[i]+s)/(2.0f*a[i]); \
+    x1[i] = (-b[i]-s)/(2.0f*a[i]); \
   } else { \
-    x2[i] = 0.0; \
-    x1[i] = 0.0; \
+    x2[i] = 0.0f; \
+    x1[i] = 0.0f; \
   }
 
 #include "common/KernelBase.hpp"

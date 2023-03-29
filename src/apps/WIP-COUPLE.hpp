@@ -24,18 +24,18 @@
 ///         Real_type c1re = real(c1);  Real_type c1im = imag(c1);
 ///         Real_type c2re = real(c2);  Real_type c2im = imag(c2);
 ///
-///         /* lamda = sqrt(|c1|^2 + |c2|^2) uses doubles to avoid underflow. */
+///         /* lamda = sqrtf(|c1|^2 + |c2|^2) uses doubles to avoid underflow. */
 ///         Real_type zlam = c1re*c1re + c1im*c1im +
-///                          c2re*c2re + c2im*c2im + 1.0e-34;
-///         zlam = sqrt(zlam);
-///         Real_type snlamt = sin(zlam * dt * 0.5);
-///         Real_type cslamt = cos(zlam * dt * 0.5);
+///                          c2re*c2re + c2im*c2im + 1.0e-34f;
+///         zlam = sqrtf(zlam);
+///         Real_type snlamt = sinf(zlam * dt * 0.5f);
+///         Real_type cslamt = cosf(zlam * dt * 0.5f);
 ///
 ///         Complex_type a0t = t0[it0+i];
 ///         Complex_type a1t = t1[it0+i];
 ///         Complex_type a2t = t2[it0+i] * fratio;
 ///
-///         Real_type r_zlam= 1.0/zlam;
+///         Real_type r_zlam= 1.0f/zlam;
 ///         c1 *= r_zlam;
 ///         c2 *= r_zlam;
 ///         Real_type zac1 = zabs2(c1);
@@ -103,18 +103,18 @@ for (Index_type j = jmin; j < jmax; j++) { \
       Real_type c1re = real(c1);  Real_type c1im = imag(c1); \
       Real_type c2re = real(c2);  Real_type c2im = imag(c2); \
  \
-      /* lamda = sqrt(|c1|^2 + |c2|^2) uses doubles to avoid underflow. */ \
+      /* lamda = sqrtf(|c1|^2 + |c2|^2) uses doubles to avoid underflow. */ \
       Real_type zlam = c1re*c1re + c1im*c1im + \
-                       c2re*c2re + c2im*c2im + 1.0e-34; \
-      zlam = sqrt(zlam); \
-      Real_type snlamt = sin(zlam * dt * 0.5); \
-      Real_type cslamt = cos(zlam * dt * 0.5); \
+                       c2re*c2re + c2im*c2im + 1.0e-34f; \
+      zlam = sqrtf(zlam); \
+      Real_type snlamt = sinf(zlam * dt * 0.5f); \
+      Real_type cslamt = cosf(zlam * dt * 0.5f); \
  \
       Complex_type a0t = t0[it0+i]; \
       Complex_type a1t = t1[it0+i]; \
       Complex_type a2t = t2[it0+i] * fratio; \
  \
-      Real_type r_zlam= 1.0/zlam; \
+      Real_type r_zlam= 1.0f/zlam; \
       c1 *= r_zlam; \
       c2 *= r_zlam; \
       Real_type zac1 = zabs2(c1); \

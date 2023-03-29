@@ -18,17 +18,17 @@
 ///   constexpr int MQ1 = MPA_Q1D;
 ///   constexpr int MD1 = MPA_D1D;
 ///   constexpr int MDQ = (MQ1 > MD1) ? MQ1 : MD1;
-///   double sDQ[MQ1 * MD1];
-///   double(*Bsmem)[MD1] = (double(*)[MD1])sDQ;
-///   double(*Btsmem)[MQ1] = (double(*)[MQ1])sDQ;
-///   double sm0[MDQ * MDQ * MDQ];
-///   double sm1[MDQ * MDQ * MDQ];
-///   double(*Xsmem)[MD1][MD1] = (double(*)[MD1][MD1])sm0;
-///   double(*DDQ)[MD1][MQ1] = (double(*)[MD1][MQ1])sm1;
-///   double(*DQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm0;
-///   double(*QQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm1;
-///   double(*QQD)[MQ1][MD1] = (double(*)[MQ1][MD1])sm0;
-///   double(*QDD)[MD1][MD1] = (double(*)[MD1][MD1])sm1;
+///   float sDQ[MQ1 * MD1];
+///   float(*Bsmem)[MD1] = (float(*)[MD1])sDQ;
+///   float(*Btsmem)[MQ1] = (float(*)[MQ1])sDQ;
+///   float sm0[MDQ * MDQ * MDQ];
+///   float sm1[MDQ * MDQ * MDQ];
+///   float(*Xsmem)[MD1][MD1] = (float(*)[MD1][MD1])sm0;
+///   float(*DDQ)[MD1][MQ1] = (float(*)[MD1][MQ1])sm1;
+///   float(*DQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm0;
+///   float(*QQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm1;
+///   float(*QQD)[MQ1][MD1] = (float(*)[MQ1][MD1])sm0;
+///   float(*QDD)[MD1][MD1] = (float(*)[MD1][MD1])sm1;
 ///
 ///   for(int dy=0; dy<MPA_D1D; ++dy) {
 ///     for(int dx=0; dx<MPA_D1D; ++dx) {
@@ -43,7 +43,7 @@
 ///
 ///   for(int dy=0; dy<MPA_D1D; ++dy) {
 ///     for(int dx=0; dx<MPA_Q1D; ++dx) {
-///       double u[MPA_D1D];
+///       float u[MPA_D1D];
 ///       for (int dz = 0; dz < MPA_D1D; dz++) {
 ///           u[dz] = 0;
 ///       }
@@ -60,7 +60,7 @@
 ///
 ///   for(int qy=0; qy<MPA_Q1D; ++qy) {
 ///     for(int qx=0; qx<MPA_Q1D; ++qx) {
-///       double u[MPA_D1D];
+///       float u[MPA_D1D];
 ///       for (int dz = 0; dz < MPA_D1D; dz++) {
 ///         u[dz] = 0;
 ///       }
@@ -77,7 +77,7 @@
 ///
 ///   for(int qy=0; qy<MPA_Q1D; ++qy) {
 ///     for(int qx=0; qx<MPA_Q1D; ++qx) {
-///       double u[MPA_Q1D];
+///       float u[MPA_Q1D];
 ///       for (int qz = 0; qz < MPA_Q1D; qz++) {
 ///         u[qz] = 0;
 ///       }
@@ -100,7 +100,7 @@
 ///
 ///   for(int qy=0; qy<MPA_Q1D; ++qy) {
 ///     for(int dx=0; dx<MPA_D1D; ++dx) {
-///       double u[MPA_Q1D];
+///       float u[MPA_Q1D];
 ///       for (int qz = 0; qz < MPA_Q1D; ++qz) {
 ///         u[qz] = 0;
 ///       }
@@ -117,7 +117,7 @@
 ///
 ///   for(int dy=0; dy<MPA_D1D; ++dy) {
 ///     for(int dx=0; dx<MPA_D1D; ++dx) {
-///       double u[MPA_Q1D];
+///       float u[MPA_Q1D];
 ///       for (int qz = 0; qz < MPA_Q1D; ++qz) {
 ///          u[qz] = 0;
 ///       }
@@ -134,7 +134,7 @@
 ///
 ///   for(int dy=0; dy<MPA_D1D; ++dy) {
 ///     for(int dx=0; dx<MPA_D1D; ++dx) {
-///       double u[MPA_D1D];
+///       float u[MPA_D1D];
 ///       for (int dz = 0; dz < MPA_D1D; ++dz) {
 ///        u[dz] = 0;
 ///       }
@@ -184,33 +184,33 @@ Index_type NE = m_NE;
         constexpr int MQ1 = MPA_Q1D; \
         constexpr int MD1 = MPA_D1D; \
         constexpr int MDQ = (MQ1 > MD1) ? MQ1 : MD1; \
-        double sDQ[MQ1 * MD1]; \
-        double(*Bsmem)[MD1] = (double(*)[MD1])sDQ; \
-        double(*Btsmem)[MQ1] = (double(*)[MQ1])sDQ; \
-        double sm0[MDQ * MDQ * MDQ]; \
-        double sm1[MDQ * MDQ * MDQ]; \
-        double(*Xsmem)[MD1][MD1] = (double(*)[MD1][MD1])sm0; \
-        double(*DDQ)[MD1][MQ1] = (double(*)[MD1][MQ1])sm1; \
-        double(*DQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm0; \
-        double(*QQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm1; \
-        double(*QQD)[MQ1][MD1] = (double(*)[MQ1][MD1])sm0; \
-        double(*QDD)[MD1][MD1] = (double(*)[MD1][MD1])sm1;
+        float sDQ[MQ1 * MD1]; \
+        float(*Bsmem)[MD1] = (float(*)[MD1])sDQ; \
+        float(*Btsmem)[MQ1] = (float(*)[MQ1])sDQ; \
+        float sm0[MDQ * MDQ * MDQ]; \
+        float sm1[MDQ * MDQ * MDQ]; \
+        float(*Xsmem)[MD1][MD1] = (float(*)[MD1][MD1])sm0; \
+        float(*DDQ)[MD1][MQ1] = (float(*)[MD1][MQ1])sm1; \
+        float(*DQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm0; \
+        float(*QQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm1; \
+        float(*QQD)[MQ1][MD1] = (float(*)[MQ1][MD1])sm0; \
+        float(*QDD)[MD1][MD1] = (float(*)[MD1][MD1])sm1;
 
 #define MASS3DPA_0_GPU \
         constexpr int MQ1 = MPA_Q1D; \
         constexpr int MD1 = MPA_D1D; \
         constexpr int MDQ = (MQ1 > MD1) ? MQ1 : MD1; \
-        RAJA_TEAM_SHARED  double sDQ[MQ1 * MD1];     \
-        double(*Bsmem)[MD1] = (double(*)[MD1])sDQ; \
-        double(*Btsmem)[MQ1] = (double(*)[MQ1])sDQ; \
-        RAJA_TEAM_SHARED double sm0[MDQ * MDQ * MDQ];       \
-        RAJA_TEAM_SHARED double sm1[MDQ * MDQ * MDQ];      \
-        double(*Xsmem)[MD1][MD1] = (double(*)[MD1][MD1])sm0; \
-        double(*DDQ)[MD1][MQ1] = (double(*)[MD1][MQ1])sm1; \
-        double(*DQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm0; \
-        double(*QQQ)[MQ1][MQ1] = (double(*)[MQ1][MQ1])sm1; \
-        double(*QQD)[MQ1][MD1] = (double(*)[MQ1][MD1])sm0; \
-        double(*QDD)[MD1][MD1] = (double(*)[MD1][MD1])sm1;
+        RAJA_TEAM_SHARED  float sDQ[MQ1 * MD1];     \
+        float(*Bsmem)[MD1] = (float(*)[MD1])sDQ; \
+        float(*Btsmem)[MQ1] = (float(*)[MQ1])sDQ; \
+        RAJA_TEAM_SHARED float sm0[MDQ * MDQ * MDQ];       \
+        RAJA_TEAM_SHARED float sm1[MDQ * MDQ * MDQ];      \
+        float(*Xsmem)[MD1][MD1] = (float(*)[MD1][MD1])sm0; \
+        float(*DDQ)[MD1][MQ1] = (float(*)[MD1][MQ1])sm1; \
+        float(*DQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm0; \
+        float(*QQQ)[MQ1][MQ1] = (float(*)[MQ1][MQ1])sm1; \
+        float(*QQD)[MQ1][MD1] = (float(*)[MQ1][MD1])sm0; \
+        float(*QDD)[MD1][MD1] = (float(*)[MD1][MD1])sm1;
 
 #define MASS3DPA_1 \
   RAJAPERF_UNROLL(MD1) \
@@ -223,7 +223,7 @@ Xsmem[dz][dy][dx] = X_(dx, dy, dz, e); \
 
 // 2 * MPA_D1D * MPA_D1D * MPA_D1D * MPA_Q1D
 #define MASS3DPA_3 \
-  double u[MPA_D1D]; \
+  float u[MPA_D1D]; \
 RAJAPERF_UNROLL(MD1) \
 for (int dz = 0; dz < MPA_D1D; dz++) { \
 u[dz] = 0; \
@@ -242,7 +242,7 @@ DDQ[dz][dy][qx] = u[dz]; \
 
 //2 * MPA_D1D * MPA_D1D * MPA_Q1D * MPA_Q1D
 #define MASS3DPA_4 \
-            double u[MPA_D1D]; \
+            float u[MPA_D1D]; \
             RAJAPERF_UNROLL(MD1) \
             for (int dz = 0; dz < MPA_D1D; dz++) { \
               u[dz] = 0; \
@@ -261,7 +261,7 @@ DDQ[dz][dy][qx] = u[dz]; \
 
 //2 * MPA_D1D * MPA_Q1D * MPA_Q1D * MPA_Q1D + MPA_Q1D * MPA_Q1D * MPA_Q1D
 #define MASS3DPA_5 \
-            double u[MPA_Q1D]; \
+            float u[MPA_Q1D]; \
             RAJAPERF_UNROLL(MQ1) \
             for (int qz = 0; qz < MPA_Q1D; qz++) { \
               u[qz] = 0; \
@@ -283,7 +283,7 @@ DDQ[dz][dy][qx] = u[dz]; \
 
 //2 * MPA_Q1D * MPA_Q1D * MPA_Q1D * MPA_D1D
 #define MASS3DPA_7 \
-  double u[MPA_Q1D]; \
+  float u[MPA_Q1D]; \
 RAJAPERF_UNROLL(MQ1) \
 for (int qz = 0; qz < MPA_Q1D; ++qz) { \
   u[qz] = 0; \
@@ -302,7 +302,7 @@ for (int qz = 0; qz < MPA_Q1D; ++qz) { \
 
 // 2 * MPA_Q1D * MPA_Q1D * MPA_D1D * MPA_D1D
 #define MASS3DPA_8 \
-            double u[MPA_Q1D]; \
+            float u[MPA_Q1D]; \
             RAJAPERF_UNROLL(MQ1) \
             for (int qz = 0; qz < MPA_Q1D; ++qz) { \
               u[qz] = 0; \
@@ -321,7 +321,7 @@ for (int qz = 0; qz < MPA_Q1D; ++qz) { \
 
 //2 * MPA_Q1D * MPA_D1D * MPA_D1D * MPA_D1D + MPA_D1D * MPA_D1D * MPA_D1D
 #define MASS3DPA_9 \
-            double u[MPA_D1D]; \
+            float u[MPA_D1D]; \
             RAJAPERF_UNROLL(MD1) \
             for (int dz = 0; dz < MPA_D1D; ++dz) { \
               u[dz] = 0; \

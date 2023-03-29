@@ -68,15 +68,15 @@ void COUPLE::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_denac, max_loop_index, vid);
   allocAndInitData(m_denlw, max_loop_index, vid);
 
-  m_clight = 3.e+10;
-  m_csound = 3.09e+7;
-  m_omega0 = 0.9;
-  m_omegar = 0.9;
-  m_dt = 0.208;
-  m_c10 = 0.25 * (m_clight / m_csound);
-  m_fratio = sqrt(m_omegar / m_omega0);
-  m_r_fratio = 1.0/m_fratio;
-  m_c20 = 0.25 * (m_clight / m_csound) * m_r_fratio;
+  m_clight = 3.e+10f;
+  m_csound = 3.09e+7f;
+  m_omega0 = 0.9f;
+  m_omegar = 0.9f;
+  m_dt = 0.208f;
+  m_c10 = 0.25f * (m_clight / m_csound);
+  m_fratio = sqrtf(m_omegar / m_omega0);
+  m_r_fratio = 1.0f/m_fratio;
+  m_c20 = 0.25f * (m_clight / m_csound) * m_r_fratio;
   m_ireal = Complex_type(0.0, 1.0);
 }
 

@@ -10,7 +10,7 @@
 /// INDEXLIST_3LOOP kernel reference implementation:
 ///
 /// for (Index_type i = ibegin; i < iend; ++i ) {
-///   counts[i] = (x[i] < 0.0) ? 1 : 0;
+///   counts[i] = (x[i] < 0.0f) ? 1 : 0;
 /// }
 ///
 /// Index_type count = 0;
@@ -37,7 +37,7 @@
   Int_ptr list = m_list;
 
 #define INDEXLIST_3LOOP_CONDITIONAL \
-  x[i] < 0.0
+  x[i] < 0.0f
 
 #define INDEXLIST_3LOOP_MAKE_LIST \
   if (counts[i] != counts[i+1]) { \

@@ -163,11 +163,11 @@ void initData(Int_ptr& ptr, int len, VariantID vid)
 
   srand(4793);
 
-  Real_type signfact = 0.0;
+  Real_type signfact = 0.0f;
 
   for (int i = 0; i < len; ++i) {
     signfact = Real_type(rand())/RAND_MAX;
-    ptr[i] = ( signfact < 0.5 ? -1 : 1 );
+    ptr[i] = ( signfact < 0.5f ? -1 : 1 );
   };
 
   signfact = Real_type(rand())/RAND_MAX;
@@ -190,7 +190,7 @@ void initData(Real_ptr& ptr, int len, VariantID vid)
 {
   (void) vid;
 
-  Real_type factor = ( data_init_count % 2 ? 0.1 : 0.2 );
+  Real_type factor = ( data_init_count % 2 ? 0.1f : 0.2f );
 
 // first touch...
 #if defined(RAJA_ENABLE_OPENMP) && defined(RUN_OPENMP)
@@ -199,13 +199,13 @@ void initData(Real_ptr& ptr, int len, VariantID vid)
        vid == RAJA_OpenMP ) {
     #pragma omp parallel for
     for (int i = 0; i < len; ++i) {
-      ptr[i] = factor*(i + 1.1)/(i + 1.12345);
+      ptr[i] = factor*(i + 1.1f)/(i + 1.12345f);
     };
   }
 #endif
 
   for (int i = 0; i < len; ++i) {
-    ptr[i] = factor*(i + 1.1)/(i + 1.12345);
+    ptr[i] = factor*(i + 1.1f)/(i + 1.12345f);
   }
 
   incDataInitCount();
@@ -258,14 +258,14 @@ void initDataRandSign(Real_ptr& ptr, int len, VariantID vid)
   }
 #endif
 
-  Real_type factor = ( data_init_count % 2 ? 0.1 : 0.2 );
+  Real_type factor = ( data_init_count % 2 ? 0.1f : 0.2f );
 
   srand(4793);
 
   for (int i = 0; i < len; ++i) {
     Real_type signfact = Real_type(rand())/RAND_MAX;
-    signfact = ( signfact < 0.5 ? -1.0 : 1.0 );
-    ptr[i] = signfact*factor*(i + 1.1)/(i + 1.12345);
+    signfact = ( signfact < 0.5f ? -1.0f : 1.0f );
+    ptr[i] = signfact*factor*(i + 1.1f)/(i + 1.12345f);
   };
 
   incDataInitCount();
@@ -285,7 +285,7 @@ void initDataRandValue(Real_ptr& ptr, int len, VariantID vid)
        vid == RAJA_OpenMP ) {
     #pragma omp parallel for
     for (int i = 0; i < len; ++i) {
-      ptr[i] = 0.0;
+      ptr[i] = 0.0f;
     };
   }
 #endif
@@ -306,8 +306,8 @@ void initData(Complex_ptr& ptr, int len, VariantID vid)
 {
   (void) vid;
 
-  Complex_type factor = ( data_init_count % 2 ?  Complex_type(0.1,0.2) :
-                                                 Complex_type(0.2,0.3) );
+  Complex_type factor = ( data_init_count % 2 ?  Complex_type(0.1f,0.2f) :
+                                                 Complex_type(0.2f,0.3f) );
 
 #if defined(RAJA_ENABLE_OPENMP) && defined(RUN_OPENMP)
   if ( vid == Base_OpenMP ||
@@ -315,13 +315,13 @@ void initData(Complex_ptr& ptr, int len, VariantID vid)
        vid == RAJA_OpenMP ) {
     #pragma omp parallel for
     for (int i = 0; i < len; ++i) {
-      ptr[i] = factor*(i + 1.1)/(i + 1.12345);
+      ptr[i] = factor*(i + 1.1f)/(i + 1.12345f);
     };
   }
 #endif
 
   for (int i = 0; i < len; ++i) {
-    ptr[i] = factor*(i + 1.1)/(i + 1.12345);
+    ptr[i] = factor*(i + 1.1f)/(i + 1.12345f);
   }
 
   incDataInitCount();
@@ -334,7 +334,7 @@ void initData(Real_type& d, VariantID vid)
 {
   (void) vid;
 
-  Real_type factor = ( data_init_count % 2 ? 0.1 : 0.2 );
+  Real_type factor = ( data_init_count % 2 ? 0.1f : 0.2f );
   d = factor*1.1/1.12345;
 
   incDataInitCount();

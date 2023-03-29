@@ -60,9 +60,9 @@ PI_REDUCE::~PI_REDUCE()
 void PI_REDUCE::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   (void) vid;
-  m_dx = 1.0 / double(getActualProblemSize());
-  m_pi_init = 0.0;
-  m_pi = 0.0;
+  m_dx = 1.0f / float(getActualProblemSize());
+  m_pi_init = 0.0f;
+  m_pi = 0.0f;
 }
 
 void PI_REDUCE::updateChecksum(VariantID vid, size_t tune_idx)

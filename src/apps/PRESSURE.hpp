@@ -10,13 +10,13 @@
 /// PRESSURE kernel reference implementation:
 ///
 /// for (Index_type i = ibegin; i < iend; ++i ) {
-///   bvc[i] = cls * (compression[i] + 1.0);
+///   bvc[i] = cls * (compression[i] + 1.0f);
 /// }
 ///
 /// for (Index_type i = ibegin; i < iend; ++i ) {
 ///   p_new[i] = bvc[i] * e_old[i] ;
-///   if ( fabs(p_new[i]) <  p_cut ) p_new[i] = 0.0 ;
-///   if ( vnewc[i] >= eosvmax ) p_new[i] = 0.0 ;
+///   if ( fabsf(p_new[i]) <  p_cut ) p_new[i] = 0.0f ;
+///   if ( vnewc[i] >= eosvmax ) p_new[i] = 0.0f ;
 ///   if ( p_new[i]  <  pmin ) p_new[i]   = pmin ;
 /// }
 ///
@@ -37,12 +37,12 @@
 
 
 #define PRESSURE_BODY1 \
-  bvc[i] = cls * (compression[i] + 1.0);
+  bvc[i] = cls * (compression[i] + 1.0f);
 
 #define PRESSURE_BODY2 \
   p_new[i] = bvc[i] * e_old[i] ; \
-  if ( fabs(p_new[i]) <  p_cut ) p_new[i] = 0.0 ; \
-  if ( vnewc[i] >= eosvmax ) p_new[i] = 0.0 ; \
+  if ( fabsf(p_new[i]) <  p_cut ) p_new[i] = 0.0f ; \
+  if ( vnewc[i] >= eosvmax ) p_new[i] = 0.0f ; \
   if ( p_new[i]  <  pmin ) p_new[i]   = pmin ;
 
 

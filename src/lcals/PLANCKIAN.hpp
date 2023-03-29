@@ -11,7 +11,7 @@
 ///
 /// for (Index_type i = ibegin; i < iend; ++i ) {
 ///   y[i] = u[i] / v[i];
-///   w[i] = x[i] / ( exp( y[i] ) - 1.0 );
+///   w[i] = x[i] / ( expf( y[i] ) - 1.0f );
 /// }
 ///
 
@@ -28,7 +28,7 @@
 
 #define PLANCKIAN_BODY  \
   y[i] = u[i] / v[i]; \
-  w[i] = x[i] / ( exp( y[i] ) - 1.0 );
+  w[i] = x[i] / ( expf( y[i] ) - 1.0f );
 
 
 #include "common/KernelBase.hpp"

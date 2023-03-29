@@ -10,12 +10,12 @@
 /// PI_REDUCE kernel reference implementation:
 ///
 /// const int N = ...;  -- num [0, 1] sub-intervals used in Riemann integration
-/// const double dx = 1.0 / double(num_bins);
+/// const float dx = 1.0f / float(num_bins);
 ///
-/// double pi = 0.0;
+/// float pi = 0.0;
 /// for (Index_type i = 0; i < N; ++i ) {
-///   double x = (double(i) + 0.5) * dx;
-///   pi += dx / (1.0 + x * x);
+///   float x = (float(i) + 0.5f) * dx;
+///   pi += dx / (1.0f + x * x);
 /// }
 /// pi *= 4.0;
 ///
@@ -27,8 +27,8 @@
   Real_type dx = m_dx;
 
 #define PI_REDUCE_BODY \
-  double x = (double(i) + 0.5) * dx; \
-  pi += dx / (1.0 + x * x);
+  float x = (float(i) + 0.5f) * dx; \
+  pi += dx / (1.0f + x * x);
 
 #include "common/KernelBase.hpp"
 

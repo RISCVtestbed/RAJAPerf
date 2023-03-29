@@ -24,7 +24,7 @@
 ///   Real_type fyi = half * ( fy1[i] + fy2[i] - fy3[i] - fy4[i] ) ;
 ///   Real_type fyj = half * ( fy2[i] + fy3[i] - fy4[i] - fy1[i] ) ;
 ///
-///   Real_type rarea  = 1.0 / ( xi * yj - xj * yi + ptiny ) ;
+///   Real_type rarea  = 1.0f / ( xi * yj - xj * yi + ptiny ) ;
 ///
 ///   Real_type dfxdx  = rarea * ( fxi * yj - fxj * yi ) ;
 ///
@@ -74,7 +74,7 @@
   Real_type fyi = half * ( fy1[i] + fy2[i] - fy3[i] - fy4[i] ) ; \
   Real_type fyj = half * ( fy2[i] + fy3[i] - fy4[i] - fy1[i] ) ; \
  \
-  Real_type rarea  = 1.0 / ( xi * yj - xj * yi + ptiny ) ; \
+  Real_type rarea  = 1.0f / ( xi * yj - xj * yi + ptiny ) ; \
  \
   Real_type dfxdx  = rarea * ( fxi * yj - fxj * yi ) ; \
  \

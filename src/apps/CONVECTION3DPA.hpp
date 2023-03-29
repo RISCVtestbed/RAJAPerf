@@ -19,14 +19,14 @@
 ///   constexpr int max_D1D = CPA_D1D;
 ///   constexpr int max_Q1D = CPA_Q1D;
 ///   constexpr int max_DQ = (max_Q1D > max_D1D) ? max_Q1D : max_D1D;
-///   MFEM_SHARED double sm0[max_DQ*max_DQ*max_DQ];
-///   MFEM_SHARED double sm1[max_DQ*max_DQ*max_DQ];
-///   MFEM_SHARED double sm2[max_DQ*max_DQ*max_DQ];
-///   MFEM_SHARED double sm3[max_DQ*max_DQ*max_DQ];
-///   MFEM_SHARED double sm4[max_DQ*max_DQ*max_DQ];
-///   MFEM_SHARED double sm5[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm0[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm1[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm2[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm3[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm4[max_DQ*max_DQ*max_DQ];
+///   MFEM_SHARED float sm5[max_DQ*max_DQ*max_DQ];
 ///
-///   double (*u)[max_D1D][max_D1D] = (double (*)[max_D1D][max_D1D]) sm0;
+///   float (*u)[max_D1D][max_D1D] = (float (*)[max_D1D][max_D1D]) sm0;
 ///   for(int dz = 0; dz < CPA_D1D; ++dz)
 ///   {
 ///     for(int dy = 0; dy < CPA_D1D; ++dy)
@@ -38,21 +38,21 @@
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*Bu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm1;
-///   double (*Gu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm2;
+///   float (*Bu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm1;
+///   float (*Gu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm2;
 ///   for(int dz = 0; dz < CPA_D1D; ++dz)
 ///   {
 ///     for(int dy = 0; dy < CPA_D1D; ++dy)
 ///     {
 ///       for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///       {
-///         double Bu_ = 0.0;
-///         double Gu_ = 0.0;
+///         float Bu_ = 0.0;
+///         float Gu_ = 0.0;
 ///         for(int dx = 0; dx < CPA_D1D; ++dx)
 ///         {
-///           const double bx = cpa_B(qx,dx);
-///           const double gx = cpa_G(qx,dx);
-///           const double x = u[dz][dy][dx];
+///           const float bx = cpa_B(qx,dx);
+///           const float gx = cpa_G(qx,dx);
+///           const float x = u[dz][dy][dx];
 ///           Bu_ += bx * x;
 ///           Gu_ += gx * x;
 ///         }
@@ -62,22 +62,22 @@
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*BBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3;
-///   double (*GBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4;
-///   double (*BGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm5;
+///   float (*BBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3;
+///   float (*GBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4;
+///   float (*BGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm5;
 ///   for(int dz = 0; dz < CPA_D1D; ++dz)
 ///   {
 ///     for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///     {
 ///       for(int qy = 0; qy < CPA_Q1D; ++qy)
 ///       {
-///         double BBu_ = 0.0;
-///         double GBu_ = 0.0;
-///         double BGu_ = 0.0;
+///         float BBu_ = 0.0;
+///         float GBu_ = 0.0;
+///         float BGu_ = 0.0;
 ///         for(int dy = 0; dy < CPA_D1D; ++dy)
 ///         {
-///           const double bx = cpa_B(qy,dy);
-///           const double gx = cpa_G(qy,dy);
+///           const float bx = cpa_B(qy,dy);
+///           const float gx = cpa_G(qy,dy);
 ///           BBu_ += bx * Bu[dz][dy][qx];
 ///           GBu_ += gx * Bu[dz][dy][qx];
 ///           BGu_ += bx * Gu[dz][dy][qx];
@@ -89,22 +89,22 @@
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*GBBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm0;
-///   double (*BGBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm1;
-///   double (*BBGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm2;
+///   float (*GBBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm0;
+///   float (*BGBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm1;
+///   float (*BBGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm2;
 ///   for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///   {
 ///     for(int qy = 0; qy < CPA_Q1D; ++qy)
 ///     {
 ///       for(int qz = 0; qz < CPA_Q1D; ++qz)
 ///       {
-///         double GBBu_ = 0.0;
-///         double BGBu_ = 0.0;
-///         double BBGu_ = 0.0;
+///         float GBBu_ = 0.0;
+///         float BGBu_ = 0.0;
+///         float BBGu_ = 0.0;
 ///         for(int dz = 0; dz < CPA_D1D; ++dz)
 ///         {
-///           const double bx = cpa_B(qz,dz);
-///           const double gx = cpa_G(qz,dz);
+///           const float bx = cpa_B(qz,dz);
+///           const float gx = cpa_G(qz,dz);
 ///           GBBu_ += gx * BBu[dz][qy][qx];
 ///           BGBu_ += bx * GBu[dz][qy][qx];
 ///           BBGu_ += bx * BGu[dz][qy][qx];
@@ -116,37 +116,37 @@
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*DGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3;
+///   float (*DGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3;
 ///   for(int qz = 0; qz < CPA_Q1D; ++qz)
 ///   {
 ///     for(int qy = 0; qy < CPA_Q1D; ++qy)
 ///     {
 ///       for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///       {
-///         const double O1 = cpa_op(qx,qy,qz,0,e);
-///         const double O2 = cpa_op(qx,qy,qz,1,e);
-///         const double O3 = cpa_op(qx,qy,qz,2,e);
+///         const float O1 = cpa_op(qx,qy,qz,0,e);
+///         const float O2 = cpa_op(qx,qy,qz,1,e);
+///         const float O3 = cpa_op(qx,qy,qz,2,e);
 ///
-///         const double gradX = BBGu[qz][qy][qx];
-///         const double gradY = BGBu[qz][qy][qx];
-///         const double gradZ = GBBu[qz][qy][qx];
+///         const float gradX = BBGu[qz][qy][qx];
+///         const float gradY = BGBu[qz][qy][qx];
+///         const float gradZ = GBBu[qz][qy][qx];
 ///
 ///         DGu[qz][qy][qx] = (O1 * gradX) + (O2 * gradY) + (O3 * gradZ);
 ///       }
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*BDGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4;
+///   float (*BDGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4;
 ///   for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///   {
 ///     for(int qy = 0; qy < CPA_Q1D; ++qy)
 ///     {
 ///       for(int dz = 0; dz < CPA_D1D; ++dz)
 ///       {
-///          double BDGu_ = 0.0;
+///          float BDGu_ = 0.0;
 ///          for(int qz = 0; qz < CPA_Q1D; ++qz)
 ///          {
-///             const double w = cpa_Bt(dz,qz);
+///             const float w = cpa_Bt(dz,qz);
 ///             BDGu_ += w * DGu[qz][qy][qx];
 ///          }
 ///          BDGu[dz][qy][qx] = BDGu_;
@@ -154,17 +154,17 @@
 ///     }
 ///   }
 ///   MFEM_SYNC_THREAD;
-///   double (*BBDGu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm5;
+///   float (*BBDGu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm5;
 ///   for(int dz = 0; dz < CPA_D1D; ++dz)
 ///   {
 ///     for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///      {
 ///        for(int dy = 0; dy < CPA_D1D; ++dy)
 ///         {
-///            double BBDGu_ = 0.0;
+///            float BBDGu_ = 0.0;
 ///            for(int qy = 0; qy < CPA_Q1D; ++qy)
 ///            {
-///              const double w = cpa_Bt(dy,qy);
+///              const float w = cpa_Bt(dy,qy);
 ///              BBDGu_ += w * BDGu[dz][qy][qx];
 ///           }
 ///           BBDGu[dz][dy][qx] = BBDGu_;
@@ -178,10 +178,10 @@
 ///     {
 ///       for(int dx = 0; dx < CPA_D1D; ++dx)
 ///       {
-///         double BBBDGu = 0.0;
+///         float BBBDGu = 0.0;
 ///         for(int qx = 0; qx < CPA_Q1D; ++qx)
 ///         {
-///           const double w = cpa_Bt(dx,qx);
+///           const float w = cpa_Bt(dx,qx);
 ///           BBBDGu += w * BBDGu[dz][dy][qx];
 ///         }
 ///         cpaY_(dx,dy,dz,e) += BBBDGu;
@@ -226,60 +226,60 @@ Index_type NE = m_NE;
   constexpr int max_D1D = CPA_D1D; \
   constexpr int max_Q1D = CPA_Q1D; \
   constexpr int max_DQ = (max_Q1D > max_D1D) ? max_Q1D : max_D1D; \
-  RAJA_TEAM_SHARED double sm0[max_DQ*max_DQ*max_DQ]; \
-  RAJA_TEAM_SHARED double sm1[max_DQ*max_DQ*max_DQ]; \
-  RAJA_TEAM_SHARED double sm2[max_DQ*max_DQ*max_DQ]; \
-  RAJA_TEAM_SHARED double sm3[max_DQ*max_DQ*max_DQ]; \
-  RAJA_TEAM_SHARED double sm4[max_DQ*max_DQ*max_DQ]; \
-  RAJA_TEAM_SHARED double sm5[max_DQ*max_DQ*max_DQ]; \
-  double (*u)[max_D1D][max_D1D] = (double (*)[max_D1D][max_D1D]) sm0; \
-  double (*Bu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm1; \
-  double (*Gu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm2; \
-  double (*BBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3; \
-  double (*GBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4; \
-  double (*BGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm5; \
-  double (*GBBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm0; \
-  double (*BGBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm1; \
-  double (*BBGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm2; \
-  double (*DGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3;  \
-  double (*BDGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4; \
-  double (*BBDGu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm5;
+  RAJA_TEAM_SHARED float sm0[max_DQ*max_DQ*max_DQ]; \
+  RAJA_TEAM_SHARED float sm1[max_DQ*max_DQ*max_DQ]; \
+  RAJA_TEAM_SHARED float sm2[max_DQ*max_DQ*max_DQ]; \
+  RAJA_TEAM_SHARED float sm3[max_DQ*max_DQ*max_DQ]; \
+  RAJA_TEAM_SHARED float sm4[max_DQ*max_DQ*max_DQ]; \
+  RAJA_TEAM_SHARED float sm5[max_DQ*max_DQ*max_DQ]; \
+  float (*u)[max_D1D][max_D1D] = (float (*)[max_D1D][max_D1D]) sm0; \
+  float (*Bu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm1; \
+  float (*Gu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm2; \
+  float (*BBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3; \
+  float (*GBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4; \
+  float (*BGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm5; \
+  float (*GBBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm0; \
+  float (*BGBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm1; \
+  float (*BBGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm2; \
+  float (*DGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3;  \
+  float (*BDGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4; \
+  float (*BBDGu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm5;
 
 
 #define CONVECTION3DPA_0_CPU \
   constexpr int max_D1D = CPA_D1D; \
   constexpr int max_Q1D = CPA_Q1D; \
   constexpr int max_DQ = (max_Q1D > max_D1D) ? max_Q1D : max_D1D; \
-  double sm0[max_DQ*max_DQ*max_DQ]; \
-  double sm1[max_DQ*max_DQ*max_DQ]; \
-  double sm2[max_DQ*max_DQ*max_DQ]; \
-  double sm3[max_DQ*max_DQ*max_DQ]; \
-  double sm4[max_DQ*max_DQ*max_DQ]; \
-  double sm5[max_DQ*max_DQ*max_DQ]; \
-  double (*u)[max_D1D][max_D1D] = (double (*)[max_D1D][max_D1D]) sm0; \
-  double (*Bu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm1; \
-  double (*Gu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm2; \
-  double (*BBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3; \
-  double (*GBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4; \
-  double (*BGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm5; \
-  double (*GBBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm0; \
-  double (*BGBu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm1; \
-  double (*BBGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm2; \
-  double (*DGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm3;  \
-  double (*BDGu)[max_Q1D][max_Q1D] = (double (*)[max_Q1D][max_Q1D])sm4; \
-  double (*BBDGu)[max_D1D][max_Q1D] = (double (*)[max_D1D][max_Q1D])sm5;
+  float sm0[max_DQ*max_DQ*max_DQ]; \
+  float sm1[max_DQ*max_DQ*max_DQ]; \
+  float sm2[max_DQ*max_DQ*max_DQ]; \
+  float sm3[max_DQ*max_DQ*max_DQ]; \
+  float sm4[max_DQ*max_DQ*max_DQ]; \
+  float sm5[max_DQ*max_DQ*max_DQ]; \
+  float (*u)[max_D1D][max_D1D] = (float (*)[max_D1D][max_D1D]) sm0; \
+  float (*Bu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm1; \
+  float (*Gu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm2; \
+  float (*BBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3; \
+  float (*GBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4; \
+  float (*BGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm5; \
+  float (*GBBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm0; \
+  float (*BGBu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm1; \
+  float (*BBGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm2; \
+  float (*DGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm3;  \
+  float (*BDGu)[max_Q1D][max_Q1D] = (float (*)[max_Q1D][max_Q1D])sm4; \
+  float (*BBDGu)[max_D1D][max_Q1D] = (float (*)[max_D1D][max_Q1D])sm5;
 
 #define CONVECTION3DPA_1 \
   u[dz][dy][dx] = cpaX_(dx,dy,dz,e);
 
 #define CONVECTION3DPA_2 \
-  double Bu_ = 0.0; \
-  double Gu_ = 0.0; \
+  float Bu_ = 0.0; \
+  float Gu_ = 0.0; \
   for (int dx = 0; dx < CPA_D1D; ++dx) \
   { \
-    const double bx = cpa_B(qx,dx); \
-    const double gx = cpa_G(qx,dx); \
-    const double x = u[dz][dy][dx]; \
+    const float bx = cpa_B(qx,dx); \
+    const float gx = cpa_G(qx,dx); \
+    const float x = u[dz][dy][dx]; \
     Bu_ += bx * x; \
     Gu_ += gx * x; \
   } \
@@ -287,13 +287,13 @@ Index_type NE = m_NE;
   Gu[dz][dy][qx] = Gu_;
 
 #define CONVECTION3DPA_3 \
-  double BBu_ = 0.0; \
-  double GBu_ = 0.0; \
-  double BGu_ = 0.0; \
+  float BBu_ = 0.0; \
+  float GBu_ = 0.0; \
+  float BGu_ = 0.0; \
   for (int dy = 0; dy < CPA_D1D; ++dy) \
   { \
-    const double bx = cpa_B(qy,dy); \
-    const double gx = cpa_G(qy,dy); \
+    const float bx = cpa_B(qy,dy); \
+    const float gx = cpa_G(qy,dy); \
     BBu_ += bx * Bu[dz][dy][qx]; \
     GBu_ += gx * Bu[dz][dy][qx]; \
     BGu_ += bx * Gu[dz][dy][qx]; \
@@ -303,13 +303,13 @@ Index_type NE = m_NE;
   BGu[dz][qy][qx] = BGu_;
 
 #define CONVECTION3DPA_4 \
-  double GBBu_ = 0.0; \
-  double BGBu_ = 0.0; \
-  double BBGu_ = 0.0; \
+  float GBBu_ = 0.0; \
+  float BGBu_ = 0.0; \
+  float BBGu_ = 0.0; \
   for (int dz = 0; dz < CPA_D1D; ++dz) \
   { \
-    const double bx = cpa_B(qz,dz); \
-    const double gx = cpa_G(qz,dz); \
+    const float bx = cpa_B(qz,dz); \
+    const float gx = cpa_G(qz,dz); \
     GBBu_ += gx * BBu[dz][qy][qx]; \
     BGBu_ += bx * GBu[dz][qy][qx]; \
     BBGu_ += bx * BGu[dz][qy][qx]; \
@@ -319,37 +319,37 @@ Index_type NE = m_NE;
   BBGu[qz][qy][qx] = BBGu_;
 
 #define CONVECTION3DPA_5 \
-  const double O1 = cpa_op(qx,qy,qz,0,e); \
-  const double O2 = cpa_op(qx,qy,qz,1,e); \
-  const double O3 = cpa_op(qx,qy,qz,2,e); \
-  const double gradX = BBGu[qz][qy][qx]; \
-  const double gradY = BGBu[qz][qy][qx]; \
-  const double gradZ = GBBu[qz][qy][qx]; \
+  const float O1 = cpa_op(qx,qy,qz,0,e); \
+  const float O2 = cpa_op(qx,qy,qz,1,e); \
+  const float O3 = cpa_op(qx,qy,qz,2,e); \
+  const float gradX = BBGu[qz][qy][qx]; \
+  const float gradY = BGBu[qz][qy][qx]; \
+  const float gradZ = GBBu[qz][qy][qx]; \
   DGu[qz][qy][qx] = (O1 * gradX) + (O2 * gradY) + (O3 * gradZ);
 
 #define CONVECTION3DPA_6 \
-  double BDGu_ = 0.0; \
+  float BDGu_ = 0.0; \
   for (int qz = 0; qz < CPA_Q1D; ++qz) \
   { \
-    const double w = cpa_Bt(dz,qz); \
+    const float w = cpa_Bt(dz,qz); \
     BDGu_ += w * DGu[qz][qy][qx]; \
    } \
    BDGu[dz][qy][qx] = BDGu_;
 
 #define CONVECTION3DPA_7 \
-  double BBDGu_ = 0.0; \
+  float BBDGu_ = 0.0; \
   for (int qy = 0; qy < CPA_Q1D; ++qy) \
   { \
-    const double w = cpa_Bt(dy,qy); \
+    const float w = cpa_Bt(dy,qy); \
     BBDGu_ += w * BDGu[dz][qy][qx]; \
   } \
   BBDGu[dz][dy][qx] = BBDGu_; \
 
 #define CONVECTION3DPA_8 \
-  double BBBDGu = 0.0; \
+  float BBBDGu = 0.0; \
   for (int qx = 0; qx < CPA_Q1D; ++qx) \
   { \
-    const double w = cpa_Bt(dx,qx); \
+    const float w = cpa_Bt(dx,qx); \
     BBBDGu += w * BBDGu[dz][dy][qx]; \
   } \
   cpaY_(dx,dy,dz,e) += BBBDGu;

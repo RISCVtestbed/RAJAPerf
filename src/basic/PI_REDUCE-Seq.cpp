@@ -39,7 +39,7 @@ void PI_REDUCE::runSeqVariant(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx
           PI_REDUCE_BODY;
         }
 
-        m_pi = 4.0 * pi;
+        m_pi = 4.0f * pi;
 
       }
       stopTimer();
@@ -51,8 +51,8 @@ void PI_REDUCE::runSeqVariant(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx
     case Lambda_Seq : {
 
       auto pireduce_base_lam = [=](Index_type i) -> Real_type {
-                                 double x = (double(i) + 0.5) * dx;
-                                 return dx / (1.0 + x * x);
+                                 float x = (float(i) + 0.5f) * dx;
+                                 return dx / (1.0f + x * x);
                                };
 
       startTimer();
@@ -64,7 +64,7 @@ void PI_REDUCE::runSeqVariant(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx
           pi += pireduce_base_lam(i);
         }
 
-        m_pi = 4.0 * pi;
+        m_pi = 4.0f * pi;
 
       }
       stopTimer();
@@ -84,7 +84,7 @@ void PI_REDUCE::runSeqVariant(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx
             PI_REDUCE_BODY;
         });
 
-        m_pi = 4.0 * pi.get();
+        m_pi = 4.0f * pi.get();
 
       }
       stopTimer();

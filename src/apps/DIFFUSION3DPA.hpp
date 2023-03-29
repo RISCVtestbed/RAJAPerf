@@ -18,28 +18,28 @@
 ///   constexpr int MQ1 = DPA_Q1D;
 ///   constexpr int MD1 = DPA_D1D;
 ///   constexpr int MDQ = (MQ1 >  ? MQ1 : MD1;
-///   double sBG[MQ1*MD1];
-///   double (*B)[MD1] = (double (*)[MD1]) sBG;
-///   double (*G)[MD1] = (double (*)[MD1]) sBG;
-///   double (*Bt)[MQ1] = (double (*)[MQ1]) sBG;
-///   double (*Gt)[MQ1] = (double (*)[MQ1]) sBG;
-///   double sm0[3][MDQ*MDQ*MDQ];
-///   double sm1[3][MDQ*MDQ*MDQ];
-///   double (*X)[MD1][MD1]    = (double (*)[MD1][MD1]) (sm0+2);
-///   double (*DDQ0)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+0);
-///   double (*DDQ1)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+1);
-///   double (*DQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+0);
-///   double (*DQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+1);
-///   double (*DQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+2);
-///   double (*QQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+0);
-///   double (*QQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+1);
-///   double (*QQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+2);
-///   double (*QQD0)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+0);
-///   double (*QQD1)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+1);
-///   double (*QQD2)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+2);
-///   double (*QDD0)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+0);
-///   double (*QDD1)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+1);
-///   double (*QDD2)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+2);
+///   float sBG[MQ1*MD1];
+///   float (*B)[MD1] = (float (*)[MD1]) sBG;
+///   float (*G)[MD1] = (float (*)[MD1]) sBG;
+///   float (*Bt)[MQ1] = (float (*)[MQ1]) sBG;
+///   float (*Gt)[MQ1] = (float (*)[MQ1]) sBG;
+///   float sm0[3][MDQ*MDQ*MDQ];
+///   float sm1[3][MDQ*MDQ*MDQ];
+///   float (*X)[MD1][MD1]    = (float (*)[MD1][MD1]) (sm0+2);
+///   float (*DDQ0)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+0);
+///   float (*DDQ1)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+1);
+///   float (*DQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+0);
+///   float (*DQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+1);
+///   float (*DQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+2);
+///   float (*QQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+0);
+///   float (*QQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+1);
+///   float (*QQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+2);
+///   float (*QQD0)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+0);
+///   float (*QQD1)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+1);
+///   float (*QQD2)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+2);
+///   float (*QDD0)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+0);
+///   float (*QDD1)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+1);
+///   float (*QDD2)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+2);
 ///
 ///   for(int dz=0;dz<D1D;dz++){
 ///     for(int dy=0;dy<D1D;++dy){
@@ -63,14 +63,14 @@
 ///   for(int dz=0;dz<D1D;dz++){
 ///     for(int dy=0;dy<D1D;++dy){
 ///       for(int qx=0; qx<Q1D; qx++){
-///         double u = 0.0, v = 0.0;
+///         float u = 0.0, v = 0.0;
 ///         for (int dx = 0; dx < D1D; ++dx){
 ///            const int i = qi(qx,dx,Q1D);
 ///            const int j = dj(qx,dx,D1D);
 ///            const int k = qk(qx,dx,Q1D);
 ///            const int l = dl(qx,dx,D1D);
-///            const double s = sign(qx,dx);
-///            const double coords = X[dz][dy][dx];
+///            const float s = sign(qx,dx);
+///            const float coords = X[dz][dy][dx];
 ///            u += coords * B[i][j];
 ///            v += coords * G[k][l] * s;
 ///         }
@@ -83,13 +83,13 @@
 ///    for(int dz=0;dz<D1D;dz++){
 ///      for(int qy=0;qy<Q1D;++qy){
 ///         for(int qx=0; qx<Q1D;++qx){
-///           double u = 0.0, v = 0.0, w = 0.0;
+///           float u = 0.0, v = 0.0, w = 0.0;
 ///           for (int dy = 0; dy < D1D; ++dy){
 ///             const int i = qi(qy,dy,Q1D);
 ///             const int j = dj(qy,dy,D1D);
 ///             const int k = qk(qy,dy,Q1D);
 ///             const int l = dl(qy,dy,D1D);
-///             const double s = sign(qy,dy);
+///             const float s = sign(qy,dy);
 ///             u += DDQ1[dz][dy][qx] * B[i][j];
 ///             v += DDQ0[dz][dy][qx] * G[k][l] * s;
 ///             w += DDQ0[dz][dy][qx] * B[i][j];
@@ -105,29 +105,29 @@
 ///     for(int qy=0;qy<Q1D;++qy){
 ///       for(int qx=0; qx<Q1D;++qx){
 ///
-///         double u = 0.0, v = 0.0, w = 0.0;
+///         float u = 0.0, v = 0.0, w = 0.0;
 ///         for (int dz = 0; dz < D1D; ++dz){
 ///           const int i = qi(qz,dz,Q1D);
 ///           const int j = dj(qz,dz,D1D);
 ///           const int k = qk(qz,dz,Q1D);
 ///           const int l = dl(qz,dz,D1D);
-///           const double s = sign(qz,dz);
+///           const float s = sign(qz,dz);
 ///           u += DQQ0[dz][qy][qx] * B[i][j];
 ///           v += DQQ1[dz][qy][qx] * B[i][j];
 ///           w += DQQ2[dz][qy][qx] * G[k][l] * s;
 ///         }
-///         const double O11 = d(qx,qy,qz,0,e);
-///         const double O12 = d(qx,qy,qz,1,e);
-///         const double O13 = d(qx,qy,qz,2,e);
-///         const double O21 = symmetric ? O12 : d(qx,qy,qz,3,e);
-///         const double O22 = symmetric ? d(qx,qy,qz,3,e) : d(qx,qy,qz,4,e);
-///         const double O23 = symmetric ? d(qx,qy,qz,4,e) : d(qx,qy,qz,5,e);
-///         const double O31 = symmetric ? O13 : d(qx,qy,qz,6,e);
-///         const double O32 = symmetric ? O23 : d(qx,qy,qz,7,e);
-///         const double O33 = symmetric ? d(qx,qy,qz,5,e) : d(qx,qy,qz,8,e);
-///         const double gX = u;
-///         const double gY = v;
-///         const double gZ = w;
+///         const float O11 = d(qx,qy,qz,0,e);
+///         const float O12 = d(qx,qy,qz,1,e);
+///         const float O13 = d(qx,qy,qz,2,e);
+///         const float O21 = symmetric ? O12 : d(qx,qy,qz,3,e);
+///         const float O22 = symmetric ? d(qx,qy,qz,3,e) : d(qx,qy,qz,4,e);
+///         const float O23 = symmetric ? d(qx,qy,qz,4,e) : d(qx,qy,qz,5,e);
+///         const float O31 = symmetric ? O13 : d(qx,qy,qz,6,e);
+///         const float O32 = symmetric ? O23 : d(qx,qy,qz,7,e);
+///         const float O33 = symmetric ? d(qx,qy,qz,5,e) : d(qx,qy,qz,8,e);
+///         const float gX = u;
+///         const float gY = v;
+///         const float gZ = w;
 ///         QQQ0[qz][qy][qx] = (O11*gX) + (O12*gY) + (O13*gZ);
 ///         QQQ1[qz][qy][qx] = (O21*gX) + (O22*gY) + (O23*gZ);
 ///         QQQ2[qz][qy][qx] = (O31*gX) + (O32*gY) + (O33*gZ);
@@ -149,13 +149,13 @@
 ///     for(int qz=0;qz<Q1D;qz++){
 ///       for(int qy=0;qy<Q1D;++qy){
 ///          for(int dx=0; dx<D1D;++dx){
-///            double u = 0.0, v = 0.0, w = 0.0;
+///            float u = 0.0, v = 0.0, w = 0.0;
 ///            for (int qx = 0; qx < Q1D; ++qx){
 ///              const int i = qi(qx,dx,Q1D);
 ///              const int j = dj(qx,dx,D1D);
 ///              const int k = qk(qx,dx,Q1D);
 ///              const int l = dl(qx,dx,D1D);
-///              const double s = sign(qx,dx);
+///              const float s = sign(qx,dx);
 ///              u += QQQ0[qz][qy][qx] * Gt[l][k] * s;
 ///              v += QQQ1[qz][qy][qx] * Bt[j][i];
 ///              w += QQQ2[qz][qy][qx] * Bt[j][i];
@@ -170,13 +170,13 @@
 ///     for(int qz=0;qz<Q1D;qz++){
 ///       for(int dy=0;dy<D1D;++dy){
 ///          for(int dx=0; dx<D1D;++dx){
-///          double u = 0.0, v = 0.0, w = 0.0;
+///          float u = 0.0, v = 0.0, w = 0.0;
 ///          for (int qy = 0; qy < Q1D; ++qy){
 ///            const int i = qi(qy,dy,Q1D);
 ///            const int j = dj(qy,dy,D1D);
 ///            const int k = qk(qy,dy,Q1D);
 ///            const int l = dl(qy,dy,D1D);
-///            const double s = sign(qy,dy);
+///            const float s = sign(qy,dy);
 ///            u += QQD0[qz][qy][dx] * Bt[j][i];
 ///            v += QQD1[qz][qy][dx] * Gt[l][k] * s;
 ///            w += QQD2[qz][qy][dx] * Bt[j][i];
@@ -191,13 +191,13 @@
 ///    for(int dz=0;dz<D1D;dz++){
 ///      for(int dy=0;dy<D1D;++dy){
 ///        for(int dx=0; dx<D1D;++dx){
-///           double u = 0.0, v = 0.0, w = 0.0;
+///           float u = 0.0, v = 0.0, w = 0.0;
 ///           for (int qz = 0; qz < Q1D; ++qz){
 ///              const int i = qi(qz,dz,Q1D);
 ///               const int j = dj(qz,dz,D1D);
 ///               const int k = qk(qz,dz,Q1D);
 ///               const int l = dl(qz,dz,D1D);
-///               const double s = sign(qz,dz);
+///               const float s = sign(qz,dz);
 ///               u += QDD0[qz][dy][dx] * Bt[j][i];
 ///               v += QDD1[qz][dy][dx] * Bt[j][i];
 ///               w += QDD2[qz][dy][dx] * Gt[l][k] * s;
@@ -262,64 +262,64 @@ static RAJA_HOST_DEVICE inline int dl(const int q, const int d, const int D)
   return (q<=d) ? D-1-d : d;
 }
 
-static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
+static RAJA_HOST_DEVICE inline float sign(const int q, const int d)
 {
-  return (q<=d) ? -1.0 : 1.0;
+  return (q<=d) ? -1.0f : 1.0f;
 }
 
 #define DIFFUSION3DPA_0_GPU \
         constexpr int MQ1 = DPA_Q1D; \
         constexpr int MD1 = DPA_D1D; \
         constexpr int MDQ = (MQ1 > MD1) ? MQ1 : MD1; \
-        RAJA_TEAM_SHARED double sBG[MQ1*MD1]; \
-        double (*B)[MD1] = (double (*)[MD1]) sBG; \
-        double (*G)[MD1] = (double (*)[MD1]) sBG; \
-        double (*Bt)[MQ1] = (double (*)[MQ1]) sBG; \
-        double (*Gt)[MQ1] = (double (*)[MQ1]) sBG; \
-        RAJA_TEAM_SHARED double sm0[3][MDQ*MDQ*MDQ]; \
-        RAJA_TEAM_SHARED double sm1[3][MDQ*MDQ*MDQ]; \
-        double (*s_X)[MD1][MD1]    = (double (*)[MD1][MD1]) (sm0+2); \
-        double (*DDQ0)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+0); \
-        double (*DDQ1)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+1); \
-        double (*DQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+0); \
-        double (*DQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+1); \
-        double (*DQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+2); \
-        double (*QQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+0); \
-        double (*QQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+1); \
-        double (*QQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+2); \
-        double (*QQD0)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+0); \
-        double (*QQD1)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+1); \
-        double (*QQD2)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+2); \
-        double (*QDD0)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+0); \
-        double (*QDD1)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+1); \
-        double (*QDD2)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+2);
+        RAJA_TEAM_SHARED float sBG[MQ1*MD1]; \
+        float (*B)[MD1] = (float (*)[MD1]) sBG; \
+        float (*G)[MD1] = (float (*)[MD1]) sBG; \
+        float (*Bt)[MQ1] = (float (*)[MQ1]) sBG; \
+        float (*Gt)[MQ1] = (float (*)[MQ1]) sBG; \
+        RAJA_TEAM_SHARED float sm0[3][MDQ*MDQ*MDQ]; \
+        RAJA_TEAM_SHARED float sm1[3][MDQ*MDQ*MDQ]; \
+        float (*s_X)[MD1][MD1]    = (float (*)[MD1][MD1]) (sm0+2); \
+        float (*DDQ0)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+0); \
+        float (*DDQ1)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+1); \
+        float (*DQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+0); \
+        float (*DQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+1); \
+        float (*DQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+2); \
+        float (*QQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+0); \
+        float (*QQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+1); \
+        float (*QQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+2); \
+        float (*QQD0)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+0); \
+        float (*QQD1)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+1); \
+        float (*QQD2)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+2); \
+        float (*QDD0)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+0); \
+        float (*QDD1)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+1); \
+        float (*QDD2)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+2);
 
 #define DIFFUSION3DPA_0_CPU \
         constexpr int MQ1 = DPA_Q1D; \
         constexpr int MD1 = DPA_D1D; \
         constexpr int MDQ = (MQ1 > MD1) ? MQ1 : MD1; \
-        double sBG[MQ1*MD1]; \
-        double (*B)[MD1] = (double (*)[MD1]) sBG; \
-        double (*G)[MD1] = (double (*)[MD1]) sBG; \
-        double (*Bt)[MQ1] = (double (*)[MQ1]) sBG; \
-        double (*Gt)[MQ1] = (double (*)[MQ1]) sBG; \
-        double sm0[3][MDQ*MDQ*MDQ]; \
-        double sm1[3][MDQ*MDQ*MDQ]; \
-        double (*s_X)[MD1][MD1]    = (double (*)[MD1][MD1]) (sm0+2); \
-        double (*DDQ0)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+0); \
-        double (*DDQ1)[MD1][MQ1] = (double (*)[MD1][MQ1]) (sm0+1); \
-        double (*DQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+0); \
-        double (*DQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+1); \
-        double (*DQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm1+2); \
-        double (*QQQ0)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+0); \
-        double (*QQQ1)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+1); \
-        double (*QQQ2)[MQ1][MQ1] = (double (*)[MQ1][MQ1]) (sm0+2); \
-        double (*QQD0)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+0); \
-        double (*QQD1)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+1); \
-        double (*QQD2)[MQ1][MD1] = (double (*)[MQ1][MD1]) (sm1+2); \
-        double (*QDD0)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+0); \
-        double (*QDD1)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+1); \
-        double (*QDD2)[MD1][MD1] = (double (*)[MD1][MD1]) (sm0+2);
+        float sBG[MQ1*MD1]; \
+        float (*B)[MD1] = (float (*)[MD1]) sBG; \
+        float (*G)[MD1] = (float (*)[MD1]) sBG; \
+        float (*Bt)[MQ1] = (float (*)[MQ1]) sBG; \
+        float (*Gt)[MQ1] = (float (*)[MQ1]) sBG; \
+        float sm0[3][MDQ*MDQ*MDQ]; \
+        float sm1[3][MDQ*MDQ*MDQ]; \
+        float (*s_X)[MD1][MD1]    = (float (*)[MD1][MD1]) (sm0+2); \
+        float (*DDQ0)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+0); \
+        float (*DDQ1)[MD1][MQ1] = (float (*)[MD1][MQ1]) (sm0+1); \
+        float (*DQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+0); \
+        float (*DQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+1); \
+        float (*DQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm1+2); \
+        float (*QQQ0)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+0); \
+        float (*QQQ1)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+1); \
+        float (*QQQ2)[MQ1][MQ1] = (float (*)[MQ1][MQ1]) (sm0+2); \
+        float (*QQD0)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+0); \
+        float (*QQD1)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+1); \
+        float (*QQD2)[MQ1][MD1] = (float (*)[MQ1][MD1]) (sm1+2); \
+        float (*QDD0)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+0); \
+        float (*QDD1)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+1); \
+        float (*QDD2)[MD1][MD1] = (float (*)[MD1][MD1]) (sm0+2);
 
 #define DIFFUSION3DPA_1 \
         s_X[dz][dy][dx] = dpaX_(dx,dy,dz,e);
@@ -333,7 +333,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
         G[k][l] = g(qx,dy) * sign(qx,dy); \
 
 #define DIFFUSION3DPA_3 \
-           double u = 0.0, v = 0.0; \
+           float u = 0.0, v = 0.0; \
             RAJAPERF_UNROLL(MD1) \
             for (int dx = 0; dx < DPA_D1D; ++dx) \
             { \
@@ -341,8 +341,8 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
                const int j = dj(qx,dx,DPA_D1D); \
                const int k = qk(qx,dx,DPA_Q1D); \
                const int l = dl(qx,dx,DPA_D1D); \
-               const double s = sign(qx,dx); \
-               const double coords = s_X[dz][dy][dx]; \
+               const float s = sign(qx,dx); \
+               const float coords = s_X[dz][dy][dx]; \
                u += coords * B[i][j]; \
                v += coords * G[k][l] * s; \
              } \
@@ -350,7 +350,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
              DDQ1[dz][dy][qx] = v;
 
 #define DIFFUSION3DPA_4 \
-   double u = 0.0, v = 0.0, w = 0.0; \
+   float u = 0.0, v = 0.0, w = 0.0; \
    RAJAPERF_UNROLL(MD1)  \
    for (int dy = 0; dy < DPA_D1D; ++dy) \
    { \
@@ -358,7 +358,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
       const int j = dj(qy,dy,DPA_D1D); \
       const int k = qk(qy,dy,DPA_Q1D); \
       const int l = dl(qy,dy,DPA_D1D); \
-      const double s = sign(qy,dy); \
+      const float s = sign(qy,dy); \
       u += DDQ1[dz][dy][qx] * B[i][j]; \
       v += DDQ0[dz][dy][qx] * G[k][l] * s; \
       w += DDQ0[dz][dy][qx] * B[i][j]; \
@@ -368,7 +368,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
    DQQ2[dz][qy][qx] = w;
 
 #define DIFFUSION3DPA_5 \
-               double u = 0.0, v = 0.0, w = 0.0; \
+               float u = 0.0, v = 0.0, w = 0.0; \
                RAJAPERF_UNROLL(MD1) \
                for (int dz = 0; dz < DPA_D1D; ++dz) \
                { \
@@ -376,23 +376,23 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
                   const int j = dj(qz,dz,DPA_D1D); \
                   const int k = qk(qz,dz,DPA_Q1D); \
                   const int l = dl(qz,dz,DPA_D1D); \
-                  const double s = sign(qz,dz); \
+                  const float s = sign(qz,dz); \
                   u += DQQ0[dz][qy][qx] * B[i][j]; \
                   v += DQQ1[dz][qy][qx] * B[i][j]; \
                   w += DQQ2[dz][qy][qx] * G[k][l] * s; \
                } \
-               const double O11 = d(qx,qy,qz,0,e); \
-               const double O12 = d(qx,qy,qz,1,e); \
-               const double O13 = d(qx,qy,qz,2,e); \
-               const double O21 = symmetric ? O12 : d(qx,qy,qz,3,e); \
-               const double O22 = symmetric ? d(qx,qy,qz,3,e) : d(qx,qy,qz,4,e); \
-               const double O23 = symmetric ? d(qx,qy,qz,4,e) : d(qx,qy,qz,5,e); \
-               const double O31 = symmetric ? O13 : d(qx,qy,qz,6,e); \
-               const double O32 = symmetric ? O23 : d(qx,qy,qz,7,e); \
-               const double O33 = symmetric ? d(qx,qy,qz,5,e) : d(qx,qy,qz,8,e); \
-               const double gX = u; \
-               const double gY = v; \
-               const double gZ = w; \
+               const float O11 = d(qx,qy,qz,0,e); \
+               const float O12 = d(qx,qy,qz,1,e); \
+               const float O13 = d(qx,qy,qz,2,e); \
+               const float O21 = symmetric ? O12 : d(qx,qy,qz,3,e); \
+               const float O22 = symmetric ? d(qx,qy,qz,3,e) : d(qx,qy,qz,4,e); \
+               const float O23 = symmetric ? d(qx,qy,qz,4,e) : d(qx,qy,qz,5,e); \
+               const float O31 = symmetric ? O13 : d(qx,qy,qz,6,e); \
+               const float O32 = symmetric ? O23 : d(qx,qy,qz,7,e); \
+               const float O33 = symmetric ? d(qx,qy,qz,5,e) : d(qx,qy,qz,8,e); \
+               const float gX = u; \
+               const float gY = v; \
+               const float gZ = w; \
                QQQ0[qz][qy][qx] = (O11*gX) + (O12*gY) + (O13*gZ); \
                QQQ1[qz][qy][qx] = (O21*gX) + (O22*gY) + (O23*gZ); \
                QQQ2[qz][qy][qx] = (O31*gX) + (O32*gY) + (O33*gZ);
@@ -406,7 +406,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
                Gt[l][k] = g(q,d) * sign(q,d);
 
 #define DIFFUSION3DPA_7 \
-            double u = 0.0, v = 0.0, w = 0.0; \
+            float u = 0.0, v = 0.0, w = 0.0; \
             RAJAPERF_UNROLL(MQ1) \
             for (int qx = 0; qx < DPA_Q1D; ++qx) \
             { \
@@ -414,7 +414,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
               const int j = dj(qx,dx,DPA_D1D); \
               const int k = qk(qx,dx,DPA_Q1D); \
               const int l = dl(qx,dx,DPA_D1D); \
-              const double s = sign(qx,dx); \
+              const float s = sign(qx,dx); \
               u += QQQ0[qz][qy][qx] * Gt[l][k] * s; \
               v += QQQ1[qz][qy][qx] * Bt[j][i]; \
               w += QQQ2[qz][qy][qx] * Bt[j][i]; \
@@ -424,7 +424,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
             QQD2[qz][qy][dx] = w;
 
 #define DIFFUSION3DPA_8 \
-        double u = 0.0, v = 0.0, w = 0.0; \
+        float u = 0.0, v = 0.0, w = 0.0; \
         RAJAPERF_UNROLL(DPA_Q1D)  \
         for (int qy = 0; qy < DPA_Q1D; ++qy) \
         { \
@@ -432,7 +432,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
           const int j = dj(qy,dy,DPA_D1D); \
           const int k = qk(qy,dy,DPA_Q1D); \
           const int l = dl(qy,dy,DPA_D1D); \
-          const double s = sign(qy,dy); \
+          const float s = sign(qy,dy); \
           u += QQD0[qz][qy][dx] * Bt[j][i]; \
           v += QQD1[qz][qy][dx] * Gt[l][k] * s; \
           w += QQD2[qz][qy][dx] * Bt[j][i]; \
@@ -442,7 +442,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
         QDD2[qz][dy][dx] = w;
 
 #define DIFFUSION3DPA_9 \
-        double u = 0.0, v = 0.0, w = 0.0; \
+        float u = 0.0, v = 0.0, w = 0.0; \
         RAJAPERF_UNROLL(MQ1) \
         for (int qz = 0; qz < DPA_Q1D; ++qz)  \
         {                                     \
@@ -450,7 +450,7 @@ static RAJA_HOST_DEVICE inline double sign(const int q, const int d)
           const int j = dj(qz,dz,DPA_D1D); \
           const int k = qk(qz,dz,DPA_Q1D); \
           const int l = dl(qz,dz,DPA_D1D); \
-          const double s = sign(qz,dz);    \
+          const float s = sign(qz,dz);    \
           u += QDD0[qz][dy][dx] * Bt[j][i];     \
           v += QDD1[qz][dy][dx] * Bt[j][i];     \
           w += QDD2[qz][dy][dx] * Gt[l][k] * s; \

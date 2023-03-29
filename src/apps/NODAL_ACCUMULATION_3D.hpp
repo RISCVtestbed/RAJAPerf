@@ -14,7 +14,7 @@
 /// for (Index_type ii = ibegin; ii < iend; ++ii ) {
 ///   Index_type i = real_zones[ii];
 ///
-///   Real_type val = 0.125 * vol[i] ;
+///   Real_type val = 0.125f* vol[i] ;
 ///
 ///   x0[i] += val;
 ///   x1[i] += val;
@@ -43,7 +43,7 @@
   Index_type i = real_zones[ii];
 
 #define NODAL_ACCUMULATION_3D_BODY \
-  Real_type val = 0.125 * vol[i]; \
+  Real_type val = 0.125f* vol[i]; \
   \
   x0[i] += val; \
   x1[i] += val; \
@@ -55,7 +55,7 @@
   x7[i] += val;
 
 #define NODAL_ACCUMULATION_3D_RAJA_ATOMIC_BODY(policy) \
-  Real_type val = 0.125 * vol[i]; \
+  Real_type val = 0.125f* vol[i]; \
   \
   RAJA::atomicAdd<policy>(&x0[i], val); \
   RAJA::atomicAdd<policy>(&x1[i], val); \

@@ -13,12 +13,12 @@
 /// {
 ///   for (i = 1; i < N - 1; i++) {
 ///     for (j = 1; j < N - 1; j++) {
-///       B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][j+1] + A[i+1][j] + A[i-1][j]);
+///       B[i][j] = 0.2f * (A[i][j] + A[i][j-1] + A[i][j+1] + A[i+1][j] + A[i-1][j]);
 ///     }
 ///   }
 ///   for (i = 1; i < N - 1; i++) {
 ///     for (j = 1; j < N - 1; j++) {
-///       A[i][j] = 0.2 * (B[i][j] + B[i][j-1] + B[i][j+1] + B[i+1][j] + B[i-1][j]);
+///       A[i][j] = 0.2f * (B[i][j] + B[i][j-1] + B[i][j+1] + B[i+1][j] + B[i-1][j]);
 ///     }
 ///   }
 /// }
@@ -42,17 +42,17 @@
 
 
 #define POLYBENCH_JACOBI_2D_BODY1 \
-  B[j + i*N] = 0.2 * (A[j + i*N] + A[j-1 + i*N] + A[j+1 + i*N] + A[j + (i+1)*N] + A[j + (i-1)*N]);
+  B[j + i*N] = 0.2f * (A[j + i*N] + A[j-1 + i*N] + A[j+1 + i*N] + A[j + (i+1)*N] + A[j + (i-1)*N]);
 
 #define POLYBENCH_JACOBI_2D_BODY2 \
-  A[j + i*N] = 0.2 * (B[j + i*N] + B[j-1 + i*N] + B[j+1 + i*N] + B[j + (i+1)*N] + B[j + (i-1)*N]);
+  A[j + i*N] = 0.2f * (B[j + i*N] + B[j-1 + i*N] + B[j+1 + i*N] + B[j + (i+1)*N] + B[j + (i-1)*N]);
 
 
 #define POLYBENCH_JACOBI_2D_BODY1_RAJA \
-  Bview(i,j) = 0.2 * (Aview(i,j) + Aview(i,j-1) + Aview(i,j+1) + Aview(i+1,j) + Aview(i-1,j));
+  Bview(i,j) = 0.2f * (Aview(i,j) + Aview(i,j-1) + Aview(i,j+1) + Aview(i+1,j) + Aview(i-1,j));
 
 #define POLYBENCH_JACOBI_2D_BODY2_RAJA \
-  Aview(i,j) = 0.2 * (Bview(i,j) + Bview(i,j-1) + Bview(i,j+1) + Bview(i+1,j) + Bview(i-1,j));
+  Aview(i,j) = 0.2f * (Bview(i,j) + Bview(i,j-1) + Bview(i,j+1) + Bview(i+1,j) + Bview(i-1,j));
 
 
 #define POLYBENCH_JACOBI_2D_VIEWS_RAJA \

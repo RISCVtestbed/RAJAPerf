@@ -11,7 +11,7 @@
 ///
 /// Index_type count = 0;
 /// for (Index_type i = ibegin; i < iend; ++i ) {
-///   if (x[i] < 0.0) {
+///   if (x[i] < 0.0f) {
 ///     list[count++] = i ;
 ///   }
 /// }
@@ -26,7 +26,7 @@
   Int_ptr list = m_list;
 
 #define INDEXLIST_CONDITIONAL  \
-  x[i] < 0.0
+  x[i] < 0.0f
 
 #define INDEXLIST_BODY  \
   if (INDEXLIST_CONDITIONAL) { \

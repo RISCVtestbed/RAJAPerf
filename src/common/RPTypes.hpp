@@ -18,11 +18,11 @@
 //
 // Only one of the following (double or float) should be defined.
 //
-#define RP_USE_DOUBLE
-//#undef RP_USE_DOUBLE
+//#define RP_USE_DOUBLE
+#undef RP_USE_DOUBLE
 
-//#define RP_USE_FLOAT
-#undef RP_USE_FLOAT
+#define RP_USE_FLOAT
+//#undef RP_USE_FLOAT
 
 #define RP_USE_COMPLEX
 //#undef RP_USE_COMPLEX

@@ -15,9 +15,9 @@
 ///   for (i = 1; i < N-1; i++) {
 ///     for (j = 1; j < N-1; j++) {
 ///       for (k = 1; k < N-1; k++) {
-///         B[i][j][k] = 0.125*(A[i+1][j][k] - 2.0*A[i][j][k] + A[i-1][j][k]) +
-///                      0.125*(A[i][j+1][k] - 2.0*A[i][j][k] + A[i][j-1][k]) +
-///                      0.125*(A[i][j][k+1] - 2.0*A[i][j][k] + A[i][j][k-1]) +
+///         B[i][j][k] = 0.125f*(A[i+1][j][k] - 2.0*A[i][j][k] + A[i-1][j][k]) +
+///                      0.125f*(A[i][j+1][k] - 2.0*A[i][j][k] + A[i][j-1][k]) +
+///                      0.125f*(A[i][j][k+1] - 2.0*A[i][j][k] + A[i][j][k-1]) +
 ///                      A[i][j][k];
 ///       }
 ///     }
@@ -26,9 +26,9 @@
 ///   for (i = 1; i < N-1; i++) {
 ///     for (j = 1; j < N-1; j++) {
 ///       for (k = 1; k < N-1; k++) {
-///         A[i][j][k] = 0.125*(B[i+1][j][k] - 2.0*B[i][j][k] + B[i-1][j][k]) +
-///                      0.125*(B[i][j+1][k] - 2.0*B[i][j][k] + B[i][j-1][k]) +
-///                      0.125*(B[i][j][k+1] - 2.0*B[i][j][k] + B[i][j][k-1]) +
+///         A[i][j][k] = 0.125f*(B[i+1][j][k] - 2.0*B[i][j][k] + B[i-1][j][k]) +
+///                      0.125f*(B[i][j+1][k] - 2.0*B[i][j][k] + B[i][j-1][k]) +
+///                      0.125f*(B[i][j][k+1] - 2.0*B[i][j][k] + B[i][j][k-1]) +
 ///                      B[i][j][k];
 ///       }
 ///     }
@@ -55,37 +55,37 @@
 
 #define POLYBENCH_HEAT_3D_BODY1 \
   B[k + N*(j + N*i)] = \
-                   0.125*( A[k + N*(j + N*(i+1))] - 2.0*A[k + N*(j + N*i)] + \
+                   0.125f*( A[k + N*(j + N*(i+1))] - 2.0*A[k + N*(j + N*i)] + \
                            A[k + N*(j + N*(i-1))] ) + \
-                   0.125*( A[k + N*(j+1 + N*i)]   - 2.0*A[k + N*(j + N*i)] + \
+                   0.125f*( A[k + N*(j+1 + N*i)]   - 2.0*A[k + N*(j + N*i)] + \
                            A[k + N*(j-1 + N*i)] ) + \
-                   0.125*( A[k+1 + N*(j + N*i)]   - 2.0*A[k + N*(j + N*i)] + \
+                   0.125f*( A[k+1 + N*(j + N*i)]   - 2.0*A[k + N*(j + N*i)] + \
                            A[k-1 + N*(j + N*i)] ) + \
                    A[k + N*(j + N*i)];
 
 #define POLYBENCH_HEAT_3D_BODY2 \
   A[k + N*(j + N*i)] = \
-                   0.125*( B[k + N*(j + N*(i+1))] - 2.0*B[k + N*(j + N*i)] + \
+                   0.125f*( B[k + N*(j + N*(i+1))] - 2.0*B[k + N*(j + N*i)] + \
                            B[k + N*(j + N*(i-1))] ) + \
-                   0.125*( B[k + N*(j+1 + N*i)]   - 2.0*B[k + N*(j + N*i)] + \
+                   0.125f*( B[k + N*(j+1 + N*i)]   - 2.0*B[k + N*(j + N*i)] + \
                            B[k + N*(j-1 + N*i)] ) + \
-                   0.125*( B[k+1 + N*(j + N*i)]   - 2.0*B[k + N*(j + N*i)] + \
+                   0.125f*( B[k+1 + N*(j + N*i)]   - 2.0*B[k + N*(j + N*i)] + \
                            B[k-1 + N*(j + N*i)] ) + \
                    B[k + N*(j + N*i)];
 
 
 #define POLYBENCH_HEAT_3D_BODY1_RAJA \
   Bview(i,j,k) = \
-             0.125*( Aview(i+1,j,k) - 2.0*Aview(i,j,k) + Aview(i-1,j,k) ) + \
-             0.125*( Aview(i,j+1,k) - 2.0*Aview(i,j,k) + Aview(i,j-1,k) ) + \
-             0.125*( Aview(i,j,k+1) - 2.0*Aview(i,j,k) + Aview(i,j,k-1) ) + \
+             0.125f*( Aview(i+1,j,k) - 2.0*Aview(i,j,k) + Aview(i-1,j,k) ) + \
+             0.125f*( Aview(i,j+1,k) - 2.0*Aview(i,j,k) + Aview(i,j-1,k) ) + \
+             0.125f*( Aview(i,j,k+1) - 2.0*Aview(i,j,k) + Aview(i,j,k-1) ) + \
              Aview(i,j,k);
 
 #define POLYBENCH_HEAT_3D_BODY2_RAJA \
   Aview(i,j,k) = \
-             0.125*( Bview(i+1,j,k) - 2.0*Bview(i,j,k) + Bview(i-1,j,k) ) + \
-             0.125*( Bview(i,j+1,k) - 2.0*Bview(i,j,k) + Bview(i,j-1,k) ) + \
-             0.125*( Bview(i,j,k+1) - 2.0*Bview(i,j,k) + Bview(i,j,k-1) ) + \
+             0.125f*( Bview(i+1,j,k) - 2.0*Bview(i,j,k) + Bview(i-1,j,k) ) + \
+             0.125f*( Bview(i,j+1,k) - 2.0*Bview(i,j,k) + Bview(i,j-1,k) ) + \
+             0.125f*( Bview(i,j,k+1) - 2.0*Bview(i,j,k) + Bview(i,j,k-1) ) + \
              Bview(i,j,k);
 
 

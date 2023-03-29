@@ -13,9 +13,9 @@
 ///      for (Index_type by = 0; by < Ny; ++by) {
 ///        for (Index_type bx = 0; bx < Nx; ++bx) {
 ///
-///          double As[TL_SZ][TL_SZ];
-///          double Bs[TL_SZ][TL_SZ];
-///          double Cs[TL_SZ][TL_SZ];
+///          float As[TL_SZ][TL_SZ];
+///          float Bs[TL_SZ][TL_SZ];
+///          float Cs[TL_SZ][TL_SZ];
 ///
 ///          for (Index_type ty = 0; ty < TL_SZ; ++ty) {
 ///            for (Index_type tx = 0; tx < TL_SZ; ++tx) {
@@ -32,11 +32,11 @@
 ///                if (k * TL_SZ + tx < N && Row < N)
 ///                  As[ty][tx] = A[Row * N + k * TL_SZ + tx];
 ///                else
-///                  As[ty][tx] = 0.0;
+///                  As[ty][tx] = 0.0f;
 ///                if (k * TL_SZ + ty < N && Col < N)
 ///                  Bs[ty][tx] = B[(k * TL_SZ + ty) * N + Col];
 ///                else
-///                  Bs[ty][tx] = 0.0;
+///                  Bs[ty][tx] = 0.0f;
 ///              }
 ///            }
 ///
@@ -85,17 +85,17 @@ constexpr rajaperf::Index_type TL_SZ = 16;
  so it doesn't see these kind of problems.
  */
 #define MAT_MAT_SHARED_BODY_0_CLANG_HIP_CPU(tile_size)                         \
-  double As[tile_size][tile_size];                                             \
-  double Bs[tile_size][tile_size];                                             \
-  double Cs[tile_size][tile_size];
+  float As[tile_size][tile_size];                                             \
+  float Bs[tile_size][tile_size];                                             \
+  float Cs[tile_size][tile_size];
 
 #define MAT_MAT_SHARED_BODY_0(tile_size)                                       \
-  RAJA_TEAM_SHARED double As[tile_size][tile_size];                            \
-  RAJA_TEAM_SHARED double Bs[tile_size][tile_size];                            \
-  RAJA_TEAM_SHARED double Cs[tile_size][tile_size];
+  RAJA_TEAM_SHARED float As[tile_size][tile_size];                            \
+  RAJA_TEAM_SHARED float Bs[tile_size][tile_size];                            \
+  RAJA_TEAM_SHARED float Cs[tile_size][tile_size];
 
 #define MAT_MAT_SHARED_BODY_1(tile_size)                                       \
-  Cs[ty][tx] = 0;
+  Cs[ty][tx] = 0.f;
 
 #define MAT_MAT_SHARED_BODY_2(tile_size)                                       \
   const Index_type Row = by * tile_size + ty;                                  \
@@ -103,11 +103,11 @@ constexpr rajaperf::Index_type TL_SZ = 16;
   if (k * tile_size + tx < N && Row < N)                                       \
     As[ty][tx] = A[Row * N + k * tile_size + tx];                              \
   else                                                                         \
-    As[ty][tx] = 0.0;                                                          \
+    As[ty][tx] = 0.0f;                                                          \
   if (k * tile_size + ty < N && Col < N)                                       \
     Bs[ty][tx] = B[(k * tile_size + ty) * N + Col];                            \
   else                                                                         \
-    Bs[ty][tx] = 0.0;
+    Bs[ty][tx] = 0.0f;
 
 #define MAT_MAT_SHARED_BODY_3(tile_size)                                       \
   for (Index_type n = 0; n < tile_size; ++n)                                   \

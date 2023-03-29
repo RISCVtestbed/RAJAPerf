@@ -71,7 +71,7 @@ void TRAP_INT::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 
   m_h = xn - m_x0;
 
-  m_sumx_init = 0.0;
+  m_sumx_init = 0.0f;
 
   m_sumx = 0;
 }
