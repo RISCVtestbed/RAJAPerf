@@ -72,7 +72,7 @@ NESTED_INIT::~NESTED_INIT()
 
 void NESTED_INIT::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_array, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_array, m_array_length, (float) 0.0, vid);
 }
 
 void NESTED_INIT::updateChecksum(VariantID vid, size_t tune_idx)

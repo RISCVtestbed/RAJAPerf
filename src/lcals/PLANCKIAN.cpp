@@ -63,7 +63,7 @@ void PLANCKIAN::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_y, getActualProblemSize(), vid);
   allocAndInitData(m_u, getActualProblemSize(), vid);
   allocAndInitData(m_v, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_w, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_w, getActualProblemSize(), (float) 0.0, vid);
 }
 
 void PLANCKIAN::updateChecksum(VariantID vid, size_t tune_idx)

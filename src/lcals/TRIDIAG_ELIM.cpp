@@ -61,7 +61,7 @@ TRIDIAG_ELIM::~TRIDIAG_ELIM()
 
 void TRIDIAG_ELIM::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_xout, m_N, 0.0, vid);
+  allocAndInitDataConst(m_xout, m_N, (float) 0.0, vid);
   allocAndInitData(m_xin, m_N, vid);
   allocAndInitData(m_y, m_N, vid);
   allocAndInitData(m_z, m_N, vid);

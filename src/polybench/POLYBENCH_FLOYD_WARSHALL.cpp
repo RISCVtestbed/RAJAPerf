@@ -70,7 +70,7 @@ void POLYBENCH_FLOYD_WARSHALL::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(t
 {
   (void) vid;
   allocAndInitDataRandSign(m_pin, m_N*m_N, vid);
-  allocAndInitDataConst(m_pout, m_N*m_N, 0.0, vid);
+  allocAndInitDataConst(m_pout, m_N*m_N, (float) 0.0, vid);
 }
 
 void POLYBENCH_FLOYD_WARSHALL::updateChecksum(VariantID vid, size_t tune_idx)

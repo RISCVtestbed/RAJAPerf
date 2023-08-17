@@ -69,7 +69,7 @@ void GEN_LIN_RECUR::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   m_kb5i = 0;
 
-  allocAndInitDataConst(m_b5, m_N, 0.0, vid);
+  allocAndInitDataConst(m_b5, m_N, (float) 0.0, vid);
   allocAndInitData(m_stb5, m_N, vid);
   allocAndInitData(m_sa, m_N, vid);
   allocAndInitData(m_sb, m_N, vid);

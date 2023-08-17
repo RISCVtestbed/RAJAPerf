@@ -65,7 +65,7 @@ FIR::~FIR()
 void FIR::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   allocAndInitData(m_in, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_out, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_out, getActualProblemSize(), (float) 0.0, vid);
 }
 
 void FIR::updateChecksum(VariantID vid, size_t tune_idx)

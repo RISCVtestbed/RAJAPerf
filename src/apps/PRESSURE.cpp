@@ -62,7 +62,7 @@ void PRESSURE::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   allocAndInitData(m_compression, getActualProblemSize(), vid);
   allocAndInitData(m_bvc, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_p_new, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_p_new, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_e_old, getActualProblemSize(), vid);
   allocAndInitData(m_vnewc, getActualProblemSize(), vid);
 

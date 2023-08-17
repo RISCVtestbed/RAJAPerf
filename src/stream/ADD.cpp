@@ -64,7 +64,7 @@ void ADD::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   allocAndInitData(m_a, getActualProblemSize(), vid);
   allocAndInitData(m_b, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_c, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_c, getActualProblemSize(), (float) 0.0, vid);
 }
 
 void ADD::updateChecksum(VariantID vid, size_t tune_idx)

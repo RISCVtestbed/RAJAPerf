@@ -92,7 +92,7 @@ POLYBENCH_FDTD_2D::~POLYBENCH_FDTD_2D()
 
 void POLYBENCH_FDTD_2D::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_hz, m_nx * m_ny, 0.0, vid);
+  allocAndInitDataConst(m_hz, m_nx * m_ny, (float) 0.0, vid);
   allocAndInitData(m_ex, m_nx * m_ny, vid);
   allocAndInitData(m_ey, m_nx * m_ny, vid);
   allocAndInitData(m_fict, m_tsteps, vid);

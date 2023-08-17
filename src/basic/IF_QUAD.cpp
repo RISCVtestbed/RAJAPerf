@@ -68,8 +68,8 @@ void IF_QUAD::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitDataRandSign(m_a, getActualProblemSize(), vid);
   allocAndInitData(m_b, getActualProblemSize(), vid);
   allocAndInitData(m_c, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_x1, getActualProblemSize(), 0.0, vid);
-  allocAndInitDataConst(m_x2, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_x1, getActualProblemSize(), (float) 0.0, vid);
+  allocAndInitDataConst(m_x2, getActualProblemSize(), (float) 0.0, vid);
 }
 
 void IF_QUAD::updateChecksum(VariantID vid, size_t tune_idx)

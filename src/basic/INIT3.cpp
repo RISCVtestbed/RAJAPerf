@@ -61,9 +61,9 @@ INIT3::~INIT3()
 
 void INIT3::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_out1, getActualProblemSize(), 0.0, vid);
-  allocAndInitDataConst(m_out2, getActualProblemSize(), 0.0, vid);
-  allocAndInitDataConst(m_out3, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_out1, getActualProblemSize(), (float) 0.0, vid);
+  allocAndInitDataConst(m_out2, getActualProblemSize(), (float) 0.0, vid);
+  allocAndInitDataConst(m_out3, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_in1, getActualProblemSize(), vid);
   allocAndInitData(m_in2, getActualProblemSize(), vid);
 }

@@ -81,8 +81,8 @@ HYDRO_2D::~HYDRO_2D()
 
 void HYDRO_2D::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_zrout, m_array_length, 0.0, vid);
-  allocAndInitDataConst(m_zzout, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_zrout, m_array_length, (float) 0.0, vid);
+  allocAndInitDataConst(m_zzout, m_array_length, (float) 0.0, vid);
   allocAndInitData(m_za, m_array_length, vid);
   allocAndInitData(m_zb, m_array_length, vid);
   allocAndInitData(m_zm, m_array_length, vid);

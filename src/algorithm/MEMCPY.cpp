@@ -59,8 +59,8 @@ MEMCPY::~MEMCPY()
 
 void MEMCPY::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_x, getActualProblemSize(), 0.0, vid);
-  allocAndInitDataConst(m_y, getActualProblemSize(), -1.234567e89, vid);
+  allocAndInitDataConst(m_x, getActualProblemSize(), (float) 0.0, vid);
+  allocAndInitDataConst(m_y, getActualProblemSize(), (float) -1.234567e89, vid);
 }
 
 void MEMCPY::updateChecksum(VariantID vid, size_t tune_idx)

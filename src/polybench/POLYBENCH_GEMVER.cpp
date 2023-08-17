@@ -94,7 +94,7 @@ void POLYBENCH_GEMVER::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx)
   allocAndInitData(m_v1, m_n, vid);
   allocAndInitData(m_u2, m_n, vid);
   allocAndInitData(m_v2, m_n, vid);
-  allocAndInitDataConst(m_w, m_n, 0.0, vid);
+  allocAndInitDataConst(m_w, m_n, (float) 0.0, vid);
   allocAndInitData(m_x, m_n, vid);
   allocAndInitData(m_y, m_n, vid);
   allocAndInitData(m_z, m_n, vid);

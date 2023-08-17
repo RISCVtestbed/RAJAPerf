@@ -67,9 +67,9 @@ MAT_MAT_SHARED::~MAT_MAT_SHARED() {}
 void MAT_MAT_SHARED::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx)) {
   const Index_type NN = m_N * m_N;
 
-  allocAndInitDataConst(m_A, NN, 1.0, vid);
-  allocAndInitDataConst(m_B, NN, 1.0, vid);
-  allocAndInitDataConst(m_C, NN, 0.0, vid);
+  allocAndInitDataConst(m_A, NN, (float) 1.0, vid);
+  allocAndInitDataConst(m_B, NN, (float) 1.0, vid);
+  allocAndInitDataConst(m_C, NN, (float) 0.0, vid);
 }
 
 void MAT_MAT_SHARED::updateChecksum(VariantID vid, size_t tune_idx) {

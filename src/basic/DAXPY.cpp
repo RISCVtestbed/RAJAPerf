@@ -61,7 +61,7 @@ DAXPY::~DAXPY()
 
 void DAXPY::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_y, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_y, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_x, getActualProblemSize(), vid);
   initData(m_a, vid);
 }

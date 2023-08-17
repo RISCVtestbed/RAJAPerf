@@ -71,8 +71,8 @@ DEL_DOT_VEC_2D::~DEL_DOT_VEC_2D()
 
 void DEL_DOT_VEC_2D::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_x, m_array_length, 0.0, vid);
-  allocAndInitDataConst(m_y, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_x, m_array_length, (float) 0.0, vid);
+  allocAndInitDataConst(m_y, m_array_length, (float) 0.0, vid);
 
   Real_type dx = 0.2;
   Real_type dy = 0.1;
@@ -81,7 +81,7 @@ void DEL_DOT_VEC_2D::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_xdot, m_array_length, vid);
   allocAndInitData(m_ydot, m_array_length, vid);
 
-  allocAndInitDataConst(m_div, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_div, m_array_length, (float) 0.0, vid);
 
   m_ptiny = 1.0e-20;
   m_half = 0.5;

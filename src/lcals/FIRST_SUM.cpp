@@ -62,7 +62,7 @@ FIRST_SUM::~FIRST_SUM()
 
 void FIRST_SUM::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_x, m_N, 0.0, vid);
+  allocAndInitDataConst(m_x, m_N, (float) 0.0, vid);
   allocAndInitData(m_y, m_N, vid);
 }
 

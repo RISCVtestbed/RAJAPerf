@@ -74,8 +74,8 @@ void POLYBENCH_MVT::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_y1, m_N, vid);
   allocAndInitData(m_y2, m_N, vid);
   allocAndInitData(m_A, m_N * m_N, vid);
-  allocAndInitDataConst(m_x1, m_N, 0.0, vid);
-  allocAndInitDataConst(m_x2, m_N, 0.0, vid);
+  allocAndInitDataConst(m_x1, m_N, (float) 0.0, vid);
+  allocAndInitDataConst(m_x2, m_N, (float) 0.0, vid);
 }
 
 void POLYBENCH_MVT::updateChecksum(VariantID vid, size_t tune_idx)

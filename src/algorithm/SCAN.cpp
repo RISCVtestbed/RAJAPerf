@@ -64,7 +64,7 @@ SCAN::~SCAN()
 void SCAN::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
   allocAndInitDataRandValue(m_x, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_y, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_y, getActualProblemSize(), (float) 0.0, vid);
 }
 
 void SCAN::updateChecksum(VariantID vid, size_t tune_idx)

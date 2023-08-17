@@ -70,12 +70,12 @@ ENERGY::~ENERGY()
 
 void ENERGY::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_e_new, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_e_new, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_e_old, getActualProblemSize(), vid);
   allocAndInitData(m_delvc, getActualProblemSize(), vid);
   allocAndInitData(m_p_new, getActualProblemSize(), vid);
   allocAndInitData(m_p_old, getActualProblemSize(), vid);
-  allocAndInitDataConst(m_q_new, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_q_new, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_q_old, getActualProblemSize(), vid);
   allocAndInitData(m_work, getActualProblemSize(), vid);
   allocAndInitData(m_compHalfStep, getActualProblemSize(), vid);

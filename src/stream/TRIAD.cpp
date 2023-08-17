@@ -66,7 +66,7 @@ TRIAD::~TRIAD()
 
 void TRIAD::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_a, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_a, getActualProblemSize(), (float) 0.0, vid);
   allocAndInitData(m_b, getActualProblemSize(), vid);
   allocAndInitData(m_c, getActualProblemSize(), vid);
   initData(m_alpha, vid);

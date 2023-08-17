@@ -62,7 +62,7 @@ void DIFF_PREDICT::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   m_array_length = getActualProblemSize() * 14;
   m_offset = getActualProblemSize();
 
-  allocAndInitDataConst(m_px, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_px, m_array_length, (float) 0.0, vid);
   allocAndInitData(m_cx, m_array_length, vid);
 }
 

@@ -99,9 +99,9 @@ void POLYBENCH_3MM::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_B, m_nk * m_nj, vid);
   allocAndInitData(m_C, m_nj * m_nm, vid);
   allocAndInitData(m_D, m_nm * m_nl, vid);
-  allocAndInitDataConst(m_E, m_ni * m_nj, 0.0, vid);
-  allocAndInitDataConst(m_F, m_nj * m_nl, 0.0, vid);
-  allocAndInitDataConst(m_G, m_ni * m_nl, 0.0, vid);
+  allocAndInitDataConst(m_E, m_ni * m_nj, (float) 0.0, vid);
+  allocAndInitDataConst(m_F, m_nj * m_nl, (float) 0.0, vid);
+  allocAndInitDataConst(m_G, m_ni * m_nl, (float) 0.0, vid);
 }
 
 void POLYBENCH_3MM::updateChecksum(VariantID vid, size_t tune_idx)

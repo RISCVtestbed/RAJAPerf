@@ -71,7 +71,7 @@ POLYBENCH_ADI::~POLYBENCH_ADI()
 
 void POLYBENCH_ADI::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_U, m_n * m_n, 0.0, vid);
+  allocAndInitDataConst(m_U, m_n * m_n, (float) 0.0, vid);
   allocAndInitData(m_V, m_n * m_n, vid);
   allocAndInitData(m_P, m_n * m_n, vid);
   allocAndInitData(m_Q, m_n * m_n, vid);

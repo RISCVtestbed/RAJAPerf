@@ -62,7 +62,7 @@ INIT_VIEW1D_OFFSET::~INIT_VIEW1D_OFFSET()
 
 void INIT_VIEW1D_OFFSET::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_a, getActualProblemSize(), 0.0, vid);
+  allocAndInitDataConst(m_a, getActualProblemSize(), (float) 0.0, vid);
   m_val = 0.00000123;
 }
 

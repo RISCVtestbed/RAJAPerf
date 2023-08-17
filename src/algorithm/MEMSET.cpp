@@ -60,7 +60,7 @@ MEMSET::~MEMSET()
 
 void MEMSET::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_x, getActualProblemSize(), -1.234567e89, vid);
+  allocAndInitDataConst(m_x, getActualProblemSize(), (float) -1.234567e89, vid);
   m_val = 0.0;
 }
 

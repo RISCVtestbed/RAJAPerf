@@ -66,7 +66,7 @@ HYDRO_1D::~HYDRO_1D()
 
 void HYDRO_1D::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
 {
-  allocAndInitDataConst(m_x, m_array_length, 0.0, vid);
+  allocAndInitDataConst(m_x, m_array_length, (float) 0.0, vid);
   allocAndInitData(m_y, m_array_length, vid);
   allocAndInitData(m_z, m_array_length, vid);
 

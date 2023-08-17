@@ -69,7 +69,7 @@ void POLYBENCH_GESUMMV::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx
 {
   (void) vid;
   allocAndInitData(m_x, m_N, vid);
-  allocAndInitDataConst(m_y, m_N, 0.0, vid);
+  allocAndInitDataConst(m_y, m_N, (float) 0.0, vid);
   allocAndInitData(m_A, m_N * m_N, vid);
   allocAndInitData(m_B, m_N * m_N, vid);
 }

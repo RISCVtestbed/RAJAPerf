@@ -91,7 +91,7 @@ void POLYBENCH_2MM::setUp(VariantID vid, size_t RAJAPERF_UNUSED_ARG(tune_idx))
   allocAndInitData(m_A, m_ni * m_nk, vid);
   allocAndInitData(m_B, m_nk * m_nj, vid);
   allocAndInitData(m_C, m_nj * m_nl, vid);
-  allocAndInitDataConst(m_D, m_ni * m_nl, 0.0, vid);
+  allocAndInitDataConst(m_D, m_ni * m_nl, (float) 0.0, vid);
 }
 
 void POLYBENCH_2MM::updateChecksum(VariantID vid, size_t tune_idx)
